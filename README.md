@@ -9,3 +9,10 @@ npm install -f
 then click this **start.bat**.
 
 Your bot will work on a specified website.
+
+## Shortcut
+1. Right-click on the **start.bat** file
+1. Click "Create Shortcut" to create a shortcut.
+1. Move the shortcut. From Documents category.
+1. Change the shortcut icon.
+1. Voila!
