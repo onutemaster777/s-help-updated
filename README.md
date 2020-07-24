@@ -1,6 +1,6 @@
 # s-help-updated
 An updated s!help for node.js. But they have many limitations to disable or enable by using s!tool.
-##How to install?
+## How to install?
 To install this following:
 ```
 cd %Userprofile%\Documents\s-help-update-master
