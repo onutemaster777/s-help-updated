@@ -1,5 +1,6 @@
 # s-help-updated
 An updated s!help for node.js. But they have many limitations to disable or enable by using s!tool.
+Specify works only in BonziWORLD.
 ## How to install?
 To install this following:
 ```
