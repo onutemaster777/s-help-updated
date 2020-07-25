@@ -28,7 +28,7 @@ List of bot settings were available:
 * tool_skip_disable - disables the skip feature, when the reloading time are ready and disabling skip manually will be not reloadable. 
 * tool_bots_enable - enables the bot commands including burn, join and flood. 
 * tool_bots_disable - disables the bot commands including burn, join and flood. Some great idea, you can prevent users to join or flood other users, it's most recommended.
-###### Alternatively, you can do s!burn_always to burn it as automatic.
+Alternatively, you can do s!burn_always to burn it as automatic.
 * tool_name_enable - enables name command to change the bot's name.
 * tool_name_disable - prevents to change the bot's name.
 * tool_spvoice_enable - enables voice pitch and speed commands.
