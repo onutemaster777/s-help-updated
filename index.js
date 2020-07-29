@@ -53,6 +53,64 @@ var isReloadEnabled = true;
 var isJoke = true;
 var isYoutube = true;
 var featuresEnabled = true;
+var fakememes = [
+    "i reinstalled windows many times cuz i got virus this is a challenge",
+	"i criticized ics for good-for-nothing reason becuz i wared the repulsive peopl",
+	"i deleted system32 on my computer and i am playing fortnite with freakin deleted system32 folder lmao",
+	"i play roblox every day and i got 999999999 robux for free",
+	"i play pickcrafter to get null blocks for 10000",
+	"i reporting google apps to be suspended for good but it dont work i have to go to the google headquarters to bomb this headquarter with a massively cells tablets and i hope Google servers ever died eventually and they never browse on internet forever and they need to move to another search engine",
+	"i made the fucking greatest cake - the fucking poopcake, how about you will join the shitty party?",
+	"i made the clown robot :clown:",
+	"i default danced by using my dance like fortnight and steps around tatatatata lala lala lala lalalala",
+	"i hated les inexusibles for nothing",
+	"i made the good videos but they not watching betray us",
+	"ics wont leave me alone because i did something wrong with",
+	"ics is fucking grounded go to your room immediately you scoutfag you are fucking compensated and meaned",
+	"i sorried to ics but she didnt accept my apology i think i will die",
+	"itzcrazyscout shoot my head please say goodbye",
+	"itzcrazyscout terminate my channel plz",
+	"ics please ground me RIGHT NOW i give your mass of hard drive whatever",
+	"i hypocrited my opinions doing as myself",
+	"engage me itzcrazyscout engage me right nooooooooooooooooooooooooooooow",
+	"im playing minecraft on hardcore mode and then i lost my items in 0 score points",
+	"i play lg sta-p53es i type any number wish we want",
+	"mommy ona i didnt do anything wrong he impersonated me can you report him please",
+	"Danielius paulavičius mom i am not a fault, i can\'t through this channel because they impersonating me for no apparent reason",
+	"i created nkyt show account and now they will hate me for hard shit",
+	"i reported to nkyt and arsikphonegreat but it didnt work i have to hack this account and delete with these all videos and alts",
+	"i hacked itzcrazyscout\'s computer i deleted system32 folder for admin abusing stall they will not gonna to recover this computer this is will pay for this for ADMIN ABUSING!!!",
+	"i hacked zander blake\'s computer and i steal the files",
+	"itzcrazyscout hacked my computer i have to turn off wifi to prevent hacks *turns off* thats good.",
+	"ics doxxed my ip information now i have to assign another ip to improve my brain cells and buy the ip",
+	"i buyed the shitty pirated site then i got dmca\'ed",
+	"i love losky so much but ics still hates me and knows me i am, ics is a psychopath, psychology and mentality",
+	"i forcing seamusmario to love and hug losky with loving syringe",
+	"ics prepare to die get stomach exploded you ass cockroach adminfag",
+	"my friend ics and itzchris are watching oggy and the cockroaches within all of episodes",
+	"whatsoever, ics. tell your real born date and real name, if you dont i will poop on your head with the bucket and what\'s you will get deserve not giving the name and date",
+	"ics goes to jail becuz he is a parole, quadruple killer, people banishment, aura killer and such of a things i think he is a kiddie for now permanent",
+	"crazy shut this server down because you are admin abuser and bullying me like an ass of jolly",
+	"i unbanned on bonziworld 2 discord server with vpn or i changed the ip address and works finally",
+	"i imagine for my little pony friendship is magic characters to sex with twilight sparkle, rainbow dash, applejack, pinkie pie, rarity, fluttershy, spike, princess celestia, sweetie belle, big mac, derpy hooves and more",
+	"i dislike bot thekantapapa videos for no reason",
+	"i read the rules in one second on bonziworld 2",
+	"give the bonziworld 3 for now",
+	"ok yall grounded grounded grounded grounded grounded grounded for 3879527590759295729697444795157275275970929773035962765272673526735 years go to ur rooms now",
+	"itzcrazyscout? no? more like itzfuckshitout! oh my god this user sucks i hate this man die this shitass forever and ever and ever and ever",
+	"i do play classic games on samsung sgh-c160m when i cry everytim",
+	"i installed windows xp and works fine and silently",
+	"i am upgraded to intel i9-9900k from a old i3 processor",
+	"i stole the republic of gamers pc and runs very very very excellent so faithful as vary",
+	"i copied nkyt videos for samsung sgh like fucking shit nigga nkyt show",
+	"bonziworld fe is much better than bonzi.world",
+	"i reported bagelchip for inappropriate swear on discord terms of safety",
+	"i banned all of users becus i hacked him every user no matter she tries to fuck me and ban me like an loser",
+	"i hate my life i die",
+	"i bought full of sgh phones and got diamond! about crap of 100000 diamonties purchased as lol",
+	"bixby please skip this shit right now, i want to talk you please",
+	"i hacked every account running bonziworld and ruining codes muhahahahahaha"
+];
 var sockets = []
 var commands = {
     help:function(){
@@ -745,7 +803,7 @@ var commands = {
 	sorry(txt){
 		cmdcount++
 		console.log('Sorried to "' + txt + '"')
-        return ([txt]+['. I sm very sorry!'])
+        return ([txt]+['. I am very sorry!'])
     },
 	notepad(txt){
 		cmdcount++
@@ -754,7 +812,7 @@ var commands = {
     },
 	google(txt){
 		if(txt==""){
-			return 'Enter the google text to search'
+			return 'Please enter this value, if you wish to enter for Google search.'
 		} else {
 		cmdcount++
 		console.log('https://www.google.com/search?q=' + txt)
@@ -763,7 +821,7 @@ var commands = {
     },
 	ddg(txt){
 		if(txt==""){
-			return 'Enter the duckduckgo text to search'
+			return 'Please enter this value, if you wish to enter for DuckDuckGo search.'
 		} else {
 		cmdcount++
 		console.log('https://duckduckgo.com/?q=' + txt)
@@ -772,7 +830,7 @@ var commands = {
     },
 	bing(txt){
 		if(txt==""){
-			return 'Enter the bing text to search'
+			return 'Please enter this value, if you wish to enter for Bing search.'
 		} else {
 		cmdcount++
 		console.log('https://www.bing.com/search?q=' + txt)
@@ -788,9 +846,72 @@ var commands = {
         return ('There is your requested website: http://www.' + [txt] + '.com')
 		}
     },
+	website_org(txt){
+		if(txt==""){
+			return 'Enter the website if you want to get the address for organization.'
+		} else {
+		cmdcount++
+		console.log('http://www.' + txt + '.org')
+        return ('There is your requested website: http://www.' + [txt] + '.org')
+		}
+    },
+	website_net(txt){
+		if(txt==""){
+			return 'Enter the website if you want to get the address for network.'
+		} else {
+		cmdcount++
+		console.log('http://www.' + txt + '.net')
+        return ('There is your requested website: http://www.' + [txt] + '.net')
+		}
+    },
+	website_gov(txt){
+		if(txt==""){
+			return 'Enter the website if you want to get the address for government.'
+		} else {
+		cmdcount++
+		console.log('http://www.' + txt + '.net')
+        return ('There is your requested website: http://www.' + [txt] + '.gov')
+		}
+    },
+	ip(txt){
+		if(txt==""){
+			return 'Enter the IP if you want to get the address for.'
+		} else {
+		cmdcount++
+		console.log('http://' + txt)
+        return ('There is your requested IP: http://' + [txt])
+		}
+    },
+	archive(txt){
+		if(txt==""){
+			return 'Enter the Internet Archive value to get this.'
+		} else {
+		cmdcount++
+		console.log('https://archive.org/search.php?query=' + txt)
+        return ('There is your requested website from Internet Archive: https://archive.org/search.php?query=' + [txt])
+		}
+    },
+	wa_save(txt){
+		if(txt==""){
+			return 'Enter the Wayback Machine save value to save the page.'
+		} else {
+		cmdcount++
+		console.log('http://web.archive.org/save/' + txt)
+        return ('There is your requested website from Wayback Machine: http://web.archive.org/save/' + [txt])
+		}
+    },
+	yt_search(txt){
+		if(txt==""){
+			return 'Enter the YouTube search text to get this result.'
+		} else {
+		cmdcount++
+		console.log('https://www.youtube.com/search?q=' + txt)
+        return ('There is your requested website: https://www.youtube.com/search?q=' + [txt])
+		}
+    },
 	aeiou(txt){
 		if(txt==""){
-			return 'Enter the text, to get the speech.'
+			return 'Please enter the text to generate TTS.'
 		} else {
 		cmdcount++
 		console.log('http://tts.cyzon.us/tts?text=' + txt)
@@ -804,17 +925,57 @@ var commands = {
     },
 	help_2(txt){
 		if(isHelpEnabled==true){
-			console('Sent a help 2')
-        return 'help page 2 of 2: s!notepad_alt [text], s!notepad [text], s!google [str], s!bing [str], s!ddg [str], s!website [url], s!aeiou [text], s!sorry [str]'
+			console.log('Sent a help 2')
+        return '<h2>Help page for s!help 2 of 2:</h2> s!notepad_alt [text], s!notepad [text], s!google [str], s!bing [str], s!ddg [str], s!website [url], s!aeiou [tts], s!sorry [text], s!uppercase [text], s!lowercase [TEXT], s!wtf, s!kiss [str], s!fart [str], s!ban [str], s!hug [str], s!mcdonalds [str], s!website_gov [url], s!website_net [url], s!website_org [url], s!ip [ip], s!yt_search [str], s!archive [str], s!wa_save [url]'
 		} else {
-			console.log('Could not send the help')
+			console.log('Could not send the help.')
 			return 'Unable to show the help. A operator has disabled the command to prevent a execution.'
 		}
     },
+	uppercase(txt){
+		cmdcount++
+		console.log(txt.toUpperCase())
+        return ('Uppercase Converted: ' + [txt.toUpperCase()])
+    },
+	lowercase(txt){
+		cmdcount++
+		console.log(txt.toLowerCase())
+        return ('Lowercase Converted: ' + [txt.toLowerCase()])
+    },
+	wtf(txt){
+		cmdcount++
+		var randomness = Math.floor(Math.random() * 56);
+		return(fakememes[randomness])
+    },
 	duolingo(txt){
 		cmdcount++
-		console.log('Congratulated head due to shot. Duolingo has shot in ' + txt)
-        return ('*duolingo shoots '+[txt]+[' with a head* Congratulations you got a head! Throw this head named '+[txt]+'. Thank you.'])
+		console.log('Congratulated head due to gunshot, duolingo has shot out in ' + txt)
+        return ('*the duolingo shoots '+[txt]+[' with a head*. Congratulations, you got a head from an human! Throw this head named '+[txt]+'. Thank you. Now then throw it! Hooray!!! We throwed into a into '+[txt]+' window!'])
+    },
+	kiss(txt){
+		cmdcount++
+		console.log('The bot kisses ' + txt + ' too much times! Yuck!')
+        return ('*Bot kisses '+[txt]+'* Fuh! *splats on the ground* It\'s too sexy!')
+    },
+	fart(txt){
+		cmdcount++
+		console.log('Bot flutenances for fart to ' + txt + '! Ugh, it smells like a black toxicism!')
+        return ('*Bot farts onto '+[txt]+'* FUCK! ITS TOO FUCKIN FARTY!')
+    },
+	hug(txt){
+		cmdcount++
+		console.log('Really? Bot hugged into ' + txt + '? It\'s so man!')
+        return ('*hugs '+[txt]+'* Oh... Its very cute and embarrassing!')
+    },
+	ban(txt){
+		cmdcount++
+		console.log(txt + ' is banned. Just I kidding.')
+        return ('{NAME} bans '+[txt]+'. Oh no! You are too admin abusive!')
+    },
+	mcdonalds(txt){
+		cmdcount++
+		console.log(txt + ' just went into McDonalds! YEAH HE WILL BE FAT LIKE A ONUTE!! >:)')
+        return ([txt]+' just gone from MacDonalds! He said: OH MY GOD I GOT FAT I EATEN TOO MUCH FRENCH FRIES AND 100 CHEESEBURGERS PER DAY OOOOOOOOOOOH I GET... FUCKIN\' DIARRHEA! *poops on the toilet in one day*')
     },
 	losky2(txt){
 		cmdcount++
@@ -822,7 +983,7 @@ var commands = {
         return 'Loskys a bitch, she\'s a big fat bitch He\'s the biggest bitch in the whole wide world He a stupid bitch, if there ever was a bitch He\'s a bitch to all the boys and girls On Monday she\'s a bitch On Tuesday she\'s a bitch On Wednesday to Saturday, she\'s a bitch Then on Sunday, just to be different he\'s a super King Kamehameha biyotch! Come on! You all know the words! Have you ever met my friend Losky? He\'s the biggest bitch in the whole wide world He\'s a mean ol\' bitch, and she has stupid hair He\'s a bitch bitch bitch bitch bitch bitch bitch Bitch bitch bitch bitch bitch bitch bitch bitch He\'s a stupid bitch! (Whoa!) Losky\'s a bitch And she\'s such a dirty bitch! (Bitch!)'
     },
 	rules(txt){
-        return 'bot includes the rules when you criticize them. RULES you will ALWAYS do: 1. Make a bot most easier. 2. Call the asshole or owo (it\'s recommended). 3. Make a fresh fake jokes. 4. Join more than fake people. RULES THINGS YOU WILL SHOULD NEVER DO: Don\'t hack this bot, it will be through onto a computer. You do NOT flood too many times pasting dozens of times otherwise, the bot consumes too much memory and leaks the website from Bonzi Owner\'s PC. Just you will NEVER give the code. Do NOT destroy this bot code or else it\'ll be broken and unrecoverable. If you don\'t ever to listen the rules, we have to give a temporarily bans from my sites and contacting on my owners to ban you, elsewhere you are such of a kiddie. Farewell.'
+        return 'Bot includes the rules when you criticize them. RULES you will ALWAYS do: 1. Make a bot most easier. 2. Call the asshole or owo (it\'s recommended). 3. Make a fresh fake jokes. 4. Join more than fake people. RULES THINGS YOU WILL SHOULD NEVER DO: Don\'t hack this bot, it will be through onto a computer. You do NOT flood too many times pasting dozens of times otherwise, the bot consumes too much memory and leaks the website from Bonzi Owner\'s PC. Just you will NEVER give the code. Do NOT destroy this bot code or else it\'ll be broken and unrecoverable. If you don\'t ever to listen the rules, we have to give a temporarily bans from my sites and contacting on my owners to ban you, elsewhere you are such of a kiddie. Farewell.'
     },
 	tool_count_reset(txt){
 		cmdcount = 0;
