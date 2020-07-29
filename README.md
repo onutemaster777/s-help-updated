@@ -2,6 +2,8 @@
 A updated s!help for Node.js and ran with BonziWORLD FE, GodWORLD, DonutWORLD, JosephWORLD, BonziWORLD Revived, BonziWORLD 2, bonzi.erik.red and much more.
 But they have many limitations to disable or enable by using s!tool.
 Specify works only in BonziWORLD.
+
+The restart is will not clear an interval.
 ## How to install?
 To install this following:
 extract the file or use Git to compile
