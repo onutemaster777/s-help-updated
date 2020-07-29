@@ -1,7 +1,8 @@
 @echo off
 cls
-title BonziWORLD Bot
+color 4b
+title BonziWORLD Bot - Made by onutemaster777
 :j
 node index.js
-echo Reloading Client
+echo Reloading.
 goto j
