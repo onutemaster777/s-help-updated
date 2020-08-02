@@ -11,6 +11,8 @@ extract the file or use Git to compile
 cd %Userprofile%\Documents\s-help-update-master
 npm install -f
 ```
+The hyphen on command ```-f``` is a force.
+```%Userprofile%``` username where you're using
 
 then click this **start.bat**.
 
