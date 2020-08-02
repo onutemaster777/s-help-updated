@@ -8,11 +8,11 @@ console.log('(-|                                |-)')
 console.log('(-|            ENTERING...         |-)')
 console.log('(-|                                |-)')
 console.log('(-|--------------------------------|-)')
-var socket = io("http://bonzi.erik.red:3000")
+var socket = io("http://localhost:3000")
 socket.emit('login',{name:'s!help (FE)'})
 socket.on('reconnected',reconnected)
 var reconnected = function(){
-    var socket = io("http://bonzi.erik.red:3000")
+    var socket = io("http://localhost:3000")
     socket.emit('login',{name:'s!help (FE)'})
     socket.on('talk',function(data){
         var text = data.text
@@ -181,7 +181,7 @@ var commands = {
         }else{
 			if(isBotsEnabled==true){
             if(sockets.length > 10) return "Too much users. Fuck off!"
-            var sock = io("http://bonzi.erik.red:3000")
+            var sock = io("http://localhost:3000")
             sock.emit('login',{name:txt})
 			console.log('Created bot joiner as "' + txt + '"')
             sockets.push(sock)
@@ -199,12 +199,24 @@ var commands = {
 		if(isBotsEnabled==true){
 		cmdcount++
 		console.log('Created bot joiner behh as "' + txt + '"')
-        var sock = io("http://bonzi.erik.red:3000")
+        var sock = io("http://localhost:3000")
             sock.emit('login',{name:txt})
 			setInterval(function(){sock.emit('talk', {text:'behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh '})}, 150)
             sockets.push(sock)
 			} else { console.log('Join: You do not have a permission for behh.')
 			return 'You don\'t have a permission to use this command.'
+			}
+        },
+	join_custom_spam(txt){
+		if(isBotsEnabled==true){
+		cmdcount++
+		console.log('Created bot joiner custom spam as "' + txt + '"')
+        var sock = io("http://localhost:3000")
+            sock.emit('login',{name:txt})
+			setInterval(function(){sock.emit('talk', {text:txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt})}, 150)
+            sockets.push(sock)
+			} else { console.log('Join: You do not have a permission for custom spam.')
+			return 'You don\'t have a permission to use this command. You mean!'
 			}
         },
 	join_behh_big(txt){
@@ -215,7 +227,7 @@ var commands = {
 
 		for (let i = 0; i < 10; i++) {
 			setTimeout(function(){
-        var sock = io("http://bonzi.erik.red:3000")
+        var sock = io("http://localhost:3000")
             sock.emit('login',{name:txt})
 			setInterval(function(){sock.emit('talk', {text:'behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh '})}, 150)
             sockets.push(sock)
@@ -232,7 +244,7 @@ var commands = {
 
 		for (let i = 0; i < 500; i++) {
 			setTimeout(function(){
-        var sock = io("http://bonzi.erik.red:3000")
+        var sock = io("http://localhost:3000")
             sock.emit('login',{name:txt})
 			setInterval(function(){sock.disconnect();}, Math.random()*15000)
             sockets.push(sock)
@@ -241,23 +253,37 @@ var commands = {
 			return 'You don\'t have a permission to use this command.'
 			}
         },
+	join_bigclone(txt){
+		if(isBotsEnabled==true){
+		cmdcount++
+		console.log('Created Bot - Clone Spam: "' + txt + '"')
+		let str = ''
+
+		for (let i = 0; i < 50; i++) {
+        var sock = io("http://localhost:3000")
+            sock.emit('login',{name:txt})
+            sockets.push(sock)}
+		} else { console.log('Join: You do not have a permission.')
+			return 'You don\'t have a permission to use this command.'
+			}
+        },
 	fans(txt){
 		if(isBotsEnabled==true){
 		cmdcount++
 		console.log('4 fans created\n1. Nayje123\n2. ics\n3. itzchris\n4. onute')
-        var sock = io("http://bonzi.erik.red:3000")
+        var sock = io("http://localhost:3000")
             sock.emit('login',{name:'Nayje123'})
 			sock.emit('command', {list:['color','blue']})
             sockets.push(sock)
-			var sock = io("http://bonzi.erik.red:3000")
+			var sock = io("http://localhost:3000")
             sock.emit('login',{name:'itzcrazyscout'})
 			sock.emit('command', {list:['color','green']})
             sockets.push(sock)
-			var sock = io("http://bonzi.erik.red:3000")
+			var sock = io("http://localhost:3000")
             sock.emit('login',{name:'itzchris'})
 			sock.emit('command', {list:['color','purple']})
             sockets.push(sock)
-			var sock = io("http://bonzi.erik.red:3000")
+			var sock = io("http://localhost:3000")
             sock.emit('login',{name:'onute'})
 			sock.emit('command', {list:['color','black']})
             sockets.push(sock)
@@ -269,7 +295,7 @@ var commands = {
 		if(isBotsEnabled==true){
 		cmdcount++
 		console.log('Created! - Bonzi')
-        var sock = io("http://bonzi.erik.red:3000")
+        var sock = io("http://localhost:3000")
             sock.emit('login',{name:'BonziBUDDY'})
 			sock.emit('command', {list:['color','purple']})
 			sock.emit('command', {list:['speed','150']})
@@ -286,7 +312,7 @@ var commands = {
 		skipreload = true;
 		isFloodEnabled = true;
 		isNameDisabled = true;
-        setInterval(function(){var sock = io("http://bonzi.erik.red:3000");sock.emit('login',{name:txt});sockets.push(sock)}, 1000)
+        setInterval(function(){var sock = io("http://localhost:3000");sock.emit('login',{name:txt});sockets.push(sock)}, 1000)
 		setTimeout(function(){socket.emit('command', {list:['name','disabled']})}, 300)
 		socket.emit('talk', {text:'Name changing is disabled. Please reload the client or I will believe to wait for 10 minutes to reload.'})
 		console.log('Name changing is disabled. Please reload this client on your application.')
@@ -302,7 +328,7 @@ var commands = {
 		skipreload = true;
 		isUltfloodEnabled = true;
 		socket.emit('talk', {text:'10 seconds only. Ultra Flood is on. Please beware the client and a browser client will be banned for fast-flooding. Don\'t feel to try it, man. :('})
-        setInterval(function(){var sock = io("http://bonzi.erik.red:3000");sock.emit('login',{name:txt});sockets.push(sock)}, 250)
+        setInterval(function(){var sock = io("http://localhost:3000");sock.emit('login',{name:txt});sockets.push(sock)}, 250)
 		setTimeout(function(){socket.emit('command', {list:['name','Flood ends in 10']});console.log('Flood stopping in 10 seconds.')}, 0)
 		setTimeout(function(){socket.emit('command', {list:['name','Flood ends in 9']})}, 1000)
 		setTimeout(function(){socket.emit('command', {list:['name','Flood ends in 8']})}, 2000)
