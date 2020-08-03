@@ -53,64 +53,6 @@ var isReloadEnabled = true;
 var isJoke = true;
 var isYoutube = true;
 var featuresEnabled = true;
-var fakememes = [
-    "i reinstalled windows many times cuz i got virus this is a challenge",
-	"i criticized ics for good-for-nothing reason becuz i wared the repulsive peopl",
-	"i deleted system32 on my computer and i am playing fortnite with freakin deleted system32 folder lmao",
-	"i play roblox every day and i got 999999999 robux for free",
-	"i play pickcrafter to get null blocks for 10000",
-	"i reporting google apps to be suspended for good but it dont work i have to go to the google headquarters to bomb this headquarter with a massively cells tablets and i hope Google servers ever died eventually and they never browse on internet forever and they need to move to another search engine",
-	"i made the fucking greatest cake - the fucking poopcake, how about you will join the shitty party?",
-	"i made the clown robot :clown:",
-	"i default danced by using my dance like fortnight and steps around tatatatata lala lala lala lalalala",
-	"i hated les inexusibles for nothing",
-	"i made the good videos but they not watching betray us",
-	"ics wont leave me alone because i did something wrong with",
-	"ics is fucking grounded go to your room immediately you scoutfag you are fucking compensated and meaned",
-	"i sorried to ics but she didnt accept my apology i think i will die",
-	"itzcrazyscout shoot my head please say goodbye",
-	"itzcrazyscout terminate my channel plz",
-	"ics please ground me RIGHT NOW i give your mass of hard drive whatever",
-	"i hypocrited my opinions doing as myself",
-	"engage me itzcrazyscout engage me right nooooooooooooooooooooooooooooow",
-	"im playing minecraft on hardcore mode and then i lost my items in 0 score points",
-	"i play lg sta-p53es i type any number wish we want",
-	"mommy ona i didnt do anything wrong he impersonated me can you report him please",
-	"Danielius paulavičius mom i am not a fault, i can\'t through this channel because they impersonating me for no apparent reason",
-	"i created nkyt show account and now they will hate me for hard shit",
-	"i reported to nkyt and arsikphonegreat but it didnt work i have to hack this account and delete with these all videos and alts",
-	"i hacked itzcrazyscout\'s computer i deleted system32 folder for admin abusing stall they will not gonna to recover this computer this is will pay for this for ADMIN ABUSING!!!",
-	"i hacked zander blake\'s computer and i steal the files",
-	"itzcrazyscout hacked my computer i have to turn off wifi to prevent hacks *turns off* thats good.",
-	"ics doxxed my ip information now i have to assign another ip to improve my brain cells and buy the ip",
-	"i buyed the shitty pirated site then i got dmca\'ed",
-	"i love losky so much but ics still hates me and knows me i am, ics is a psychopath, psychology and mentality",
-	"i forcing seamusmario to love and hug losky with loving syringe",
-	"ics prepare to die get stomach exploded you ass cockroach adminfag",
-	"my friend ics and itzchris are watching oggy and the cockroaches within all of episodes",
-	"whatsoever, ics. tell your real born date and real name, if you dont i will poop on your head with the bucket and what\'s you will get deserve not giving the name and date",
-	"ics goes to jail becuz he is a parole, quadruple killer, people banishment, aura killer and such of a things i think he is a kiddie for now permanent",
-	"crazy shut this server down because you are admin abuser and bullying me like an ass of jolly",
-	"i unbanned on bonziworld 2 discord server with vpn or i changed the ip address and works finally",
-	"i imagine for my little pony friendship is magic characters to sex with twilight sparkle, rainbow dash, applejack, pinkie pie, rarity, fluttershy, spike, princess celestia, sweetie belle, big mac, derpy hooves and more",
-	"i dislike bot thekantapapa videos for no reason",
-	"i read the rules in one second on bonziworld 2",
-	"give the bonziworld 3 for now",
-	"ok yall grounded grounded grounded grounded grounded grounded for 3879527590759295729697444795157275275970929773035962765272673526735 years go to ur rooms now",
-	"itzcrazyscout? no? more like itzfuckshitout! oh my god this user sucks i hate this man die this shitass forever and ever and ever and ever",
-	"i do play classic games on samsung sgh-c160m when i cry everytim",
-	"i installed windows xp and works fine and silently",
-	"i am upgraded to intel i9-9900k from a old i3 processor",
-	"i stole the republic of gamers pc and runs very very very excellent so faithful as vary",
-	"i copied nkyt videos for samsung sgh like fucking shit nigga nkyt show",
-	"bonziworld fe is much better than bonzi.world",
-	"i reported bagelchip for inappropriate swear on discord terms of safety",
-	"i banned all of users becus i hacked him every user no matter she tries to fuck me and ban me like an loser",
-	"i hate my life i die",
-	"i bought full of sgh phones and got diamond! about crap of 100000 diamonties purchased as lol",
-	"bixby please skip this shit right now, i want to talk you please",
-	"i hacked every account running bonziworld and ruining codes muhahahahahaha"
-];
 var sockets = []
 var commands = {
     help:function(){
@@ -253,15 +195,58 @@ var commands = {
 			return 'You don\'t have a permission to use this command.'
 			}
         },
+	join_fake(txt){
+		if(isBotsEnabled==true){
+		cmdcount++
+		console.log('Created Bot - Fake People. Text: "' + txt + '"')
+        var sock = io("http://localhost:3000")
+            sock.emit('login',{name:Math.random().toString(36).slice(-10).toLowerCase()})
+			setInterval(function(){sock.emit('talk', {text:txt + " "})}, Math.random()*15000)
+			setInterval(function(){sock.emit('command', {list:['banana']});}, Math.random()*20000)
+            sockets.push(sock)
+		} else { console.log('Join: You do not have a permission.')
+			return 'You don\'t have a permission to use this command.'
+			}
+        },
 	join_bigclone(txt){
 		if(isBotsEnabled==true){
 		cmdcount++
-		console.log('Created Bot - Clone Spam: "' + txt + '"')
+		console.log('Created Bot - Big Clone Spam: "' + txt + '"')
 		let str = ''
 
 		for (let i = 0; i < 50; i++) {
         var sock = io("http://localhost:3000")
             sock.emit('login',{name:txt})
+            sockets.push(sock)}
+		} else { console.log('Join: You do not have a permission.')
+			return 'You don\'t have a permission to use this command.'
+			}
+        },
+	join_clone(txt){
+		if(isBotsEnabled==true){
+		cmdcount++
+		console.log('Created Bot - Clone Spam: "' + txt + '"')
+		let str = ''
+
+		for (let i = 0; i < 5; i++) {
+        var sock = io("http://localhost:3000")
+            sock.emit('login',{name:txt})
+            sockets.push(sock)}
+		} else { console.log('Join: You do not have a permission.')
+			return 'You don\'t have a permission to use this command.'
+			}
+        },
+	join_clone2(txt){
+		if(isBotsEnabled==true){
+		cmdcount++
+		console.log('Created Bot - Clone Spam: "' + txt + '"')
+		let str = ''
+
+		for (let i = 0; i < 5; i++) {
+        var sock = io("http://localhost:3000")
+            sock.emit('login',{name:txt})
+			setInterval(function(){sock.emit('command', {list:['color']})}, Math.random()*30000)
+			setInterval(function(){sock.emit('talk', {text:txt})}, Math.random()*30000)
             sockets.push(sock)}
 		} else { console.log('Join: You do not have a permission.')
 			return 'You don\'t have a permission to use this command.'
@@ -477,8 +462,8 @@ var commands = {
     },
 	ver(txt){
 		cmdcount++
-		console.log('Version V8 created by BonziWORLD FE user.')
-        return 'Version V8 created by and ported by BonziWORLD FE. Useless for Erik, Revived, BonziWORLD 2, BonziWORLD FE and GodWORLD websites. Can you give me pope it was a pro coding; go to http://78.63.40.199:8080 for my website (site will put in demo in 5 minutes, because they are full destroying, and ask the quiz to unlock the full website without any limitations.)'
+		console.log('Version V10 created by BonziWORLD FE user.')
+        return 'Version V10 created by and ported by BonziWORLD FE. Useless for Erik, Revived, BonziWORLD 2, BonziWORLD FE and GodWORLD websites. Can you give me pope it was a pro coding; go to http://78.63.40.199:8080 for my website (site will put in demo in 5 minutes, because they are full destroying, and ask the quiz to unlock the full website without any limitations.)'
     },
 	sing(txt){
 		cmdcount++
@@ -724,6 +709,12 @@ var commands = {
 		console.log('Pope granted.')
 		socket.emit('command', {list:['color','purple']})
 		socket.emit('command', {list:['pope']})
+    },
+	god(txt){
+		cmdcount++
+		console.log('God granted.')
+		socket.emit('command', {list:['color','purple']})
+		socket.emit('command', {list:['god']})
     },
 	color(txt){
 		cmdcount++
@@ -1256,7 +1247,7 @@ var commands = {
 	ics(txt){
 		cmdcount++
 		console.log('ICS creepypasta posted.')
-        return 'itzcrazyscout is a related person who live in United States of America, so I hate him so much, why? Because she\'s a predator and hypocriticizer. Do you know what? I\'ll get the revenge on ICS when worst you have been ever done! So fuck u. Nigga.'
+        return 'this creepypasta has been removed due to middle finger. sorry man!'
     }
 }
 socket.on('talk',function(data){
