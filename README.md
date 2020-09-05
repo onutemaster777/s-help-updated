@@ -1,5 +1,5 @@
 # s-help-updated
-A updated s!help for Node.js and ran with BonziWORLD FE, GodWORLD, DonutWORLD, JosephWORLD, BonziWORLD Revived, BonziWORLD 2, bonzi.erik.red and much more.
+A updated s!help for Node.js and ran with BonziWORLD FE, PopeWORLD, DonutWORLD, BonziWORLD Remastered, BonziWORLD NE, JosephWORLD, BonziWORLD Revived, BonziWORLD 2, bonzi.erik.red and much more.
 But they have many limitations to disable or enable by using s!tool.
 Specify works only in BonziWORLD.
 
@@ -23,22 +23,22 @@ s!tool command which it is configures bot settings to grant or revoke.
 List of bot settings were available:
 ```
 * tool_count_reset - resets the count progress including command count and YouTube video count. **NOTE: The bot progress will be reset upon the 10 minutes.**
-* tool_count_modify - modifies the command count and YouTube video count assigned as number (unlikely "NaN" (Not a Number) and "Infinity").
-* tool_count_plus - increases the count.
-* tool_count_minus - loses the count.
+* tool_count_modify - modifies the command count and YouTube video count assigned as a number (unlikely "NaN" (Not a Number) and "Infinity").
+* tool_count_plus - increases his count.
+* tool_count_minus - loses his count.
 * tool_talk_enable - enables echo, talk and say commands.
-* tool_talk_disable - disables echo, talk and says commands, they will unable to say something, so it will be sent in console what she said.
+* tool_talk_disable - disables echo, talk and says commands, they will unable to say something, so it will be sent in console what they say.
 * tool_skip_enable - enables the skip for reload, bypassing this feature will instant reload.
-* tool_skip_disable - disables the skip feature, when the reloading time are ready and disabling skip manually will be not reloadable. 
+* tool_skip_disable - disables the skip feature, when the reloading time are ready and disabling skip manually it will not reloadable. 
 * tool_bots_enable - enables the bot commands including burn, join and flood. 
-* tool_bots_disable - disables the bot commands including burn, join and flood. Some great idea, you can prevent users to join or flood other users, it's most recommended.
+* tool_bots_disable - disables the bot commands including burn, join and flood. Some goodest idea, you can prevent users to join or flood other users with this command, it's most recommended.
 Alternatively, you can do s!burn_always to burn it as automatic.
 * tool_name_enable - enables name command to change the bot's name.
 * tool_name_disable - prevents to change the bot's name.
 * tool_spvoice_enable - enables voice pitch and speed commands.
 * tool_spvoice_disable - disables the voice pitch and speed commands unable to change it, prefer to lock him.
 * tool_help_enable - enables the informational help.
-* tool_help_disable - disables the information help when you cheat (Slightly recommended)
+* tool_help_disable - disables the information help when you cheat (Not recommended)
 * tool_reload_enable - enables the reload command.
 * tool_reload_disable - disables the reload command from spamming.
 * tool_youtube_enable - enables YouTube video execution.
@@ -68,11 +68,19 @@ A bot has have a search commands that include search engine while you are surfin
 * google - sends the link for google.
 * bing - sends the link for Microsoft bing.
 * ddg - sends the link for DuckDuckGo.
+* yt_search - sends the link for YouTube.
+* archive - sends the link for Internet Archive.
 ```
 ## Other
 ```
 * aeiou - sends the following text to speech from moonbase alpha.
 * website - sends the website link.
+* website_org - sends the website that called organization link.
+* website_net - sends the website that called networking link.
+* website_gov - sends the website that called government link.
+* ip - sends an IP address.
+* ip_rng - sends an random IP address.
+* wa_save - sends the link to save website into Wayback Machine.
 ```
 # Notepad
 This bot have a command for notepad which you can type the text for notes into a console.
@@ -83,4 +91,4 @@ This bot have a command for notepad which you can type the text for notes into a
 ```
 
 
-If you want to support me for devs, just try uploading on my site: http://78.63.40.199:3005
+If you want to support me for devs, just try uploading on my site: http://onuteworld.tk:3005
