@@ -90,5 +90,32 @@ This bot have a command for notepad which you can type the text for notes into a
 * notepad_alt - the alternate notepad sends the note by yourself.
 ```
 
+# Lists
+This bot have a command for list; you can add the list only than smaller text.
+**List commands:**
+```
+* lists_list - lists of variables.
+* lists_add - adds an variable into a list.
+* lists_del - deletes the last variable from the list.
+* lists_sort - sorts variables in a alphabetical order.
+* lists_list_count - how many variables they are.
+```
+
+# Administrator
+This bot have a command for administraive commands you can ban, kick, grant or much anything you can use.
+But however, you need to type it s!tool for tool permission it is a administrative.
+
+Note: this is an admin abuse do not feel to try for a few times.
+
+**Adminstrative commands:**
+```
+* tool_kick - kicks an person from the server with specified IP address.
+* tool_ban - bans an person from the server they will not able to log in for their specified IP address.
+* tool_mute - mute an person from the server that is will not able to talk or command them anything else with specified IP address.
+* tool_grantadmin - grants a user an admin with specified IP address.
+* tool_revokeadmin - loses his user an admin with specified IP address.
+* tool_unmute - unmutes an person from the server they can now able to talk with specified IP address.
+* tool_unban -  unbans an person from the server they can now able to join with specified IP address.
+```
 
 If you want to support me for devs, just try uploading on my site: http://onuteworld.tk:3005
