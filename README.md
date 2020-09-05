@@ -3,7 +3,7 @@ A updated s!help for Node.js and ran with BonziWORLD FE, PopeWORLD, DonutWORLD, 
 But they have many limitations to disable or enable by using s!tool.
 Specify works only in BonziWORLD.
 
-The restart is will not clear an interval.
+The restart is will not clear an interval. Use noreload instead.
 ## How to install?
 To install this following:
 extract the file or use Git to compile
@@ -12,7 +12,7 @@ cd %Userprofile%\Documents\s-help-update-master
 npm install -f
 ```
 The hyphen on command ```-f``` is a force.
-```%Userprofile%``` username where you're using
+```%Userprofile%``` username where you're logged in.
 
 then click this **start.bat**.
 
