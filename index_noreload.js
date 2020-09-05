@@ -36,6 +36,65 @@ var skipreload = false;
 var talkmode = true;
 var cmdcount = 0;
 var ytcount = 0;
+var lists = [" "]
+var fakememes = [
+    "i reinstalled windows many times cuz i got virus this is a challenge",
+	"i criticized ics for good-for-nothing reason becuz i wared the repulsive peopl",
+	"i deleted system32 on my computer and i am playing fortnite with freakin deleted system32 folder lmao",
+	"i play roblox every day and i got 999999999 robux for free",
+	"i play pickcrafter to get null blocks for 10000",
+	"i reporting google apps to be suspended for good but it dont work i have to go to the google headquarters to bomb this headquarter with a massively cells tablets and i hope Google servers ever died eventually and they never browse on internet forever and they need to move to another search engine",
+	"i made the fucking greatest cake - the fucking poopcake, how about you will join the shitty party?",
+	"i made the clown robot :clown:",
+	"i default danced by using my dance like fortnight and steps around tatatatata lala lala lala lalalala",
+	"i hated les inexusibles for nothing",
+	"i made the good videos but they not watching betray us",
+	"ics wont leave me alone because i did something wrong with",
+	"ics is fucking grounded go to your room immediately you scoutfag you are fucking compensated and meaned",
+	"i sorried to ics but she didnt accept my apology i think i will die",
+	"itzcrazyscout shoot my head please say goodbye",
+	"itzcrazyscout terminate my channel plz",
+	"ics please ground me RIGHT NOW i give your mass of hard drive whatever",
+	"i hypocrited my opinions doing as myself",
+	"engage me itzcrazyscout engage me right nooooooooooooooooooooooooooooow",
+	"im playing minecraft on hardcore mode and then i lost my items in 0 score points",
+	"i play lg sta-p53es i type any number wish we want",
+	"mommy ona i didnt do anything wrong he impersonated me can you report him please",
+	"Danielius paulavičius mom i am not a fault, i can\'t through this channel because they impersonating me for no apparent reason",
+	"i created nkyt show account and now they will hate me for hard shit",
+	"i reported to nkyt and arsikphonegreat but it didnt work i have to hack this account and delete with these all videos and alts",
+	"i hacked itzcrazyscout\'s computer i deleted system32 folder for admin abusing stall they will not gonna to recover this computer this is will pay for this for ADMIN ABUSING!!!",
+	"i hacked zander blake\'s computer and i steal the files",
+	"itzcrazyscout hacked my computer i have to turn off wifi to prevent hacks *turns off* thats good.",
+	"ics doxxed my ip information now i have to assign another ip to improve my brain cells and buy the ip",
+	"i buyed the shitty pirated site then i got dmca\'ed",
+	"i love losky so much but ics still hates me and knows me i am, ics is a psychopath, psychology and mentality",
+	"i forcing seamusmario to love and hug losky with loving syringe",
+	"ics prepare to die get stomach exploded you ass cockroach adminfag",
+	"my friend ics and itzchris are watching oggy and the cockroaches within all of episodes",
+	"whatsoever, ics. tell your real born date and real name, if you dont i will poop on your head with the bucket and what\'s you will get deserve not giving the name and date",
+	"ics goes to jail becuz he is a parole, quadruple killer, people banishment, aura killer and such of a things i think he is a kiddie for now permanent",
+	"crazy shut this server down because you are admin abuser and bullying me like an ass of jolly",
+	"i unbanned on bonziworld 2 discord server with vpn or i changed the ip address and works finally",
+	"i imagine for my little pony friendship is magic characters to sex with twilight sparkle, rainbow dash, applejack, pinkie pie, rarity, fluttershy, spike, princess celestia, sweetie belle, big mac, derpy hooves and more",
+	"i dislike bot thekantapapa videos for no reason",
+	"i read the rules in one second on bonziworld 2",
+	"give the bonziworld 3 for now",
+	"ok yall grounded grounded grounded grounded grounded grounded for 3879527590759295729697444795157275275970929773035962765272673526735 years go to ur rooms now",
+	"itzcrazyscout? no? more like itzfuckshitout! oh my god this user sucks i hate this man die this shitass forever and ever and ever and ever",
+	"i do play classic games on samsung sgh-c160m when i cry everytim",
+	"i installed windows xp and works fine and silently",
+	"i am upgraded to intel i9-9900k from a old i3 processor",
+	"i stole the republic of gamers pc and runs very very very excellent so faithful as vary",
+	"i copied nkyt videos for samsung sgh like fucking shit nigga nkyt show",
+	"bonziworld fe is much better than bonzi.world",
+	"i reported bagelchip for inappropriate swear on discord terms of safety",
+	"i banned all of users becus i hacked him every user no matter she tries to fuck me and ban me like an loser",
+	"i hate my life i die",
+	"i bought full of sgh phones and got diamond! about crap of 100000 diamonties purchased as lol",
+	"bixby please skip this shit right now, i want to talk you please",
+	"i hacked every account running bonziworld and ruining codes muhahahahahaha"
+];
 var isBotsEnabled = true;
 var isHelpEnabled = true;
 var isChNameEnabled = true;
@@ -1238,6 +1297,118 @@ var commands = {
 		var reloadhibit = setInterval(function(){restartthefucking}, 600000); setInterval(function(){socket.emit('command', {list:['name','1']});console.log('Reloaded and cleared!')}, 599000); setInterval(function(){socket.emit('command', {list:['name','2']})}, 598000); setInterval(function(){socket.emit('command', {list:['name','3']})}, 597000); setInterval(function(){socket.emit('command', {list:['name','10 seconds.']})}, 590000); setInterval(function(){socket.emit('command', {list:['name','Reloading time!']})}, 540000); setTimeout(function(){talkmode = false; console.log('Reloading in 60 seconds...');skipreload = true;socket.emit('talk', {text:'Skip command is ready to use! Type the command: s!skip to skip this reload.'});console.warn('Warning: The client will restart after ten minutes in. Use s!skip to skip.')}, 540000);
 		console.log('ALL BOT SETTINGS ARE NOW DEFAULT.')
         return ('All settings have been reset.')
+    },
+	tool_kick(txt){
+		if(txt==""){
+			return 'Please enter the valuable ip address to kick a person from the server.'
+		} else {
+		cmdcount++
+		console.log('Kicked ' + txt)
+		socket.emit('command', {list:['kick',txt]})
+        return ('Successfully kicked. Kicked IP is ' + txt)
+		}
+    },
+	tool_ban(txt){
+		if(txt==""){
+			return 'Please enter the valuable ip address to ban a person from the server.'
+		} else {
+		cmdcount++
+		console.log('Banned ' + txt)
+		socket.emit('command', {list:['ban',txt]})
+        return ('Successfully banned. Banned IP is ' + txt)
+		}
+    },
+	tool_mute(txt){
+		if(txt==""){
+			return 'Please enter the valuable ip address to temporary mute a person from the server.'
+		} else {
+		cmdcount++
+		console.log('Temporarily Muted ' + txt)
+		socket.emit('command', {list:['mute',txt]})
+        return ('Successfully muted. Muted IP is ' + txt)
+		}
+    },
+	tool_grantadmin(txt){
+		if(txt==""){
+			return 'Please enter the valuable ip address to grant a person for admin from the server.'
+		} else {
+		cmdcount++
+		console.log('Granted ' + txt + ' an admin')
+		socket.emit('command', {list:['addadmin',txt]})
+        return ('Successfully granted. Granted IP is ' + txt)
+		}
+    },
+	tool_revokeadmin(txt){
+		if(txt==""){
+			return 'Please enter the valuable ip address to revoke a person for admin from the server.'
+		} else {
+		cmdcount++
+		console.log('Granted ' + txt + ' an admin')
+		socket.emit('command', {list:['removeadmin',txt]})
+        return ('Successfully revoked. Revoked IP is ' + txt)
+		}
+    },
+	tool_unmute(txt){
+		if(txt==""){
+			return 'Please enter the valuable ip address to unmute a person from the server.'
+		} else {
+		cmdcount++
+		console.log('Unmuted ' + txt)
+		socket.emit('command', {list:['unmute',txt]})
+        return ('Successfully unmuted. IP ' + txt + ' has been unmuted.')
+		}
+    },
+	tool_unban(txt){
+		if(txt==""){
+			return 'Please enter the valuable ip address to unban a person from the server.'
+		} else {
+		cmdcount++
+		console.log('Unbanned ' + txt)
+		socket.emit('command', {list:['unban',txt]})
+        return ('Successfully unbanned. IP ' + txt + ' has been unbanned.')
+		}
+    },
+	lists_list(txt){
+		cmdcount++
+		console.log('List of variables: ' + lists)
+        return ('List of Variables: ' + [lists])
+    },
+	lists_add(txt){
+		cmdcount++
+		lists.push(" " + txt)
+		console.log('Added ' + txt + ' into a list')
+        return ('Added - ' + [txt])
+    },
+	lists_del(txt){
+		cmdcount++
+		lists.pop()
+		console.log('Deleted an variable.')
+        return ('Last variable has been deleted')
+    },
+	lists_sort(txt){
+		cmdcount++
+		lists.sort()
+		console.log('All variables are now alphabetical order')
+        return ('All variables are now alphabetical order')
+    },
+	lists_list_count(txt){
+		cmdcount++
+		console.log(lists.length + ' lists found')
+        return ([lists.length] + " lists found.")
+    },
+	help_3(txt){
+		if(isHelpEnabled==true){
+			console.log('Sent a help 3')
+        return '<h2>Help page for s!help 3 of 3:</h2> s!lists_list, s!lists_add [str], s!lists_del, s!lists_sort, s!lists_list_count'
+		} else {
+			console.log('Could not send the help.')
+			return 'Unable to show the help. A operator has disabled the command to prevent a execution.'
+		}
+    },
+	ip_rng(txt){
+		cmdcount++
+		console.log('Sent an Random IP address')
+        return ('There is your fake IP: http://' + [Math.floor(Math.random()*254)] + "." + [Math.floor(Math.random()*254)] + "." + [Math.floor(Math.random()*254)] + "." + [Math.floor(Math.random()*254)])
     },
 	ics(txt){
 		cmdcount++
