@@ -1,6 +1,6 @@
 @echo off
 cls
-title BonziWORLD Bot - No Reload - Permanent Ver
+title BonziWORLD Bot - No Reload
 :j
 node index_noreload.js
 echo Reloading.
