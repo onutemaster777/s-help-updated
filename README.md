@@ -1,7 +1,9 @@
 # s-help-updated
-A updated s!help for Node.js and ran with BonziWORLD FE, PopeWORLD, DonutWORLD, BonziWORLD Remastered, BonziWORLD NE, JosephWORLD, BonziWORLD Revived, BonziWORLD 2, bonzi.erik.red and much more.
+A updated s!help for Node.js and ran with BonziWORLD FE, PopeWORLD, DonutWORLD, BonziWORLD Revived Constructed, GeriWORLD, BonziWORLD Remastered, BonziWORLD NE, JosephWORLD, BonziWORLD Revived, BonziWORLD 2, bonzi.erik.red and much more.
 But they have many limitations to disable or enable by using s!tool.
 Specify works only in BonziWORLD.
+
+BWR is now in quarantine zone, you can talk only here or ics will remember you and ban you then she attacks your ip address. Now perhaps you gonna to change your ip address after the armstrong cable has a attack; your repetition is similarly unacceptable.
 
 The restart is will not clear an interval. Use noreload instead.
 ## How to install?
@@ -119,3 +121,5 @@ Note: this is an admin abuse do not feel to try for a few times.
 ```
 
 If you want to support me for devs, just try uploading on my site: http://onuteworld.tk:3005
+
+Caution! Don't DO abusive things in the upload site. Or you get something like that, I ground children.
