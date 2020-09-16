@@ -37,6 +37,10 @@ var talkmode = true;
 var cmdcount = 0;
 var ytcount = 0;
 var lists = [" "]
+var banlist = [];
+var kicklist = [];
+var mutelist = [];
+var adminlist = [];
 var fakememes = [
     "i reinstalled windows many times cuz i got virus this is a challenge",
 	"i criticized ics for good-for-nothing reason becuz i wared the repulsive peopl",
@@ -1292,9 +1296,6 @@ var commands = {
 		var isJoke = true;
 		var isYoutube = true;
 		var featuresEnabled = true;
-		clearInterval(reloadhibit);
-		clearTimeout(reloadhibit);
-		var reloadhibit = setInterval(function(){restartthefucking}, 600000); setInterval(function(){socket.emit('command', {list:['name','1']});console.log('Reloaded and cleared!')}, 599000); setInterval(function(){socket.emit('command', {list:['name','2']})}, 598000); setInterval(function(){socket.emit('command', {list:['name','3']})}, 597000); setInterval(function(){socket.emit('command', {list:['name','10 seconds.']})}, 590000); setInterval(function(){socket.emit('command', {list:['name','Reloading time!']})}, 540000); setTimeout(function(){talkmode = false; console.log('Reloading in 60 seconds...');skipreload = true;socket.emit('talk', {text:'Skip command is ready to use! Type the command: s!skip to skip this reload.'});console.warn('Warning: The client will restart after ten minutes in. Use s!skip to skip.')}, 540000);
 		console.log('ALL BOT SETTINGS ARE NOW DEFAULT.')
         return ('All settings have been reset.')
     },
@@ -1303,6 +1304,7 @@ var commands = {
 			return 'Please enter the valuable ip address to kick a person from the server.'
 		} else {
 		cmdcount++
+		kicklist.push(txt);
 		console.log('Kicked ' + txt)
 		socket.emit('command', {list:['kick',txt]})
         return ('Successfully kicked. Kicked IP is ' + txt)
@@ -1313,6 +1315,7 @@ var commands = {
 			return 'Please enter the valuable ip address to ban a person from the server.'
 		} else {
 		cmdcount++
+		banlist.push(txt);
 		console.log('Banned ' + txt)
 		socket.emit('command', {list:['ban',txt]})
         return ('Successfully banned. Banned IP is ' + txt)
@@ -1323,6 +1326,7 @@ var commands = {
 			return 'Please enter the valuable ip address to temporary mute a person from the server.'
 		} else {
 		cmdcount++
+		mutelist.push(txt);
 		console.log('Temporarily Muted ' + txt)
 		socket.emit('command', {list:['mute',txt]})
         return ('Successfully muted. Muted IP is ' + txt)
@@ -1333,6 +1337,7 @@ var commands = {
 			return 'Please enter the valuable ip address to grant a person for admin from the server.'
 		} else {
 		cmdcount++
+		adminlist.push(txt);
 		console.log('Granted ' + txt + ' an admin')
 		socket.emit('command', {list:['addadmin',txt]})
         return ('Successfully granted. Granted IP is ' + txt)
@@ -1409,6 +1414,26 @@ var commands = {
 		cmdcount++
 		console.log('Sent an Random IP address')
         return ('There is your fake IP: http://' + [Math.floor(Math.random()*254)] + "." + [Math.floor(Math.random()*254)] + "." + [Math.floor(Math.random()*254)] + "." + [Math.floor(Math.random()*254)])
+    },
+	tool_banlist(txt){
+		cmdcount++
+		console.log('banlist: ' + banlist)
+        return ('banlist: ' + [banlist])
+    },
+	tool_kicklist(txt){
+		cmdcount++
+		console.log('kicklist: ' + kicklist)
+        return ('kicklist: ' + [kicklist])
+    },
+	tool_mutelist(txt){
+		cmdcount++
+		console.log('mutelist: ' + mutelist)
+        return ('mutelist: ' + [mutelist])
+    },
+	tool_adminlist(txt){
+		cmdcount++
+		console.log('granted admin list: ' + adminlist)
+        return ('Granted Admin list: ' + [adminlist])
     },
 	ics(txt){
 		cmdcount++
