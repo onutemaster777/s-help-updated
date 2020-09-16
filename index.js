@@ -37,6 +37,10 @@ var reloadhibit = setInterval(function(){restartthefucking}, 600000); setInterva
 	socket.emit('command', {list:['speed','140']})
 var cool = false;
 var lists = [" "];
+var banlist = [];
+var kicklist = [];
+var mutelist = [];
+var adminlist = [];
 var reloadit;
 var skipreload = false;
 var talkmode = true;
@@ -1414,6 +1418,26 @@ var commands = {
 		socket.emit('command', {list:['unban',txt]})
         return ('Successfully unbanned. IP ' + txt + ' has been unbanned.')
 		}
+    },
+	tool_banlist(txt){
+		cmdcount++
+		console.log('banlist: ' + banlist)
+        return ('banlist: ' + [banlist])
+    },
+	tool_kicklist(txt){
+		cmdcount++
+		console.log('kicklist: ' + kicklist)
+        return ('kicklist: ' + [kicklist])
+    },
+	tool_mutelist(txt){
+		cmdcount++
+		console.log('mutelist: ' + mutelist)
+        return ('mutelist: ' + [mutelist])
+    },
+	tool_adminlist(txt){
+		cmdcount++
+		console.log('granted admin list: ' + adminlist)
+        return ('Granted Admin list: ' + [adminlist])
     },
 	ics(txt){
 		cmdcount++
