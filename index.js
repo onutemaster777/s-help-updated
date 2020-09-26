@@ -36,7 +36,7 @@ var reloadhibit = setInterval(function(){restartthefucking}, 600000); setInterva
 	socket.emit('command', {list:['pitch','75']})
 	socket.emit('command', {list:['speed','140']})
 var cool = false;
-var lists = [" "];
+var lists = [];
 var banlist = [];
 var kicklist = [];
 var mutelist = [];
@@ -46,6 +46,16 @@ var skipreload = false;
 var talkmode = true;
 var cmdcount = 0;
 var ytcount = 0;
+var jobCooldown = false;
+var jobIsDeposit = false;
+var jobSluts = 0;
+var jobWorks = 0;
+var haveJob = false;
+var bankDepositCount = 0;
+var banktokenBank = 0;
+var banktokenBankLife = 0;
+var banktokens = 0;
+var banktokensUnz = 0;
 var fakememes = [
     "i reinstalled windows many times cuz i got virus this is a challenge",
 	"i criticized ics for good-for-nothing reason becuz i wared the repulsive peopl",
@@ -1439,6 +1449,205 @@ var commands = {
 		console.log('granted admin list: ' + adminlist)
         return ('Granted Admin list: ' + [adminlist])
     },
+	tool_bankrupt(txt){
+		cmdcount++
+		var jobCooldown = false;
+	jobIsDeposit = false;
+	jobSluts = 0;
+	jobWorks = 0;
+	haveJob = false;
+	bankDepositCount = 0;
+	banktokenBank = 0;
+	banktokenBankLife = 0;
+	banktokens = 0;
+	banktokensUnz = 0;
+		console.log('bankruptcy removed')
+        return ('removed bank')
+    },
+	bank_new(txt){
+		if(haveJob==true){
+			console.log('You already have a job. Start decompiling money!')
+        return 'You already started the job.'
+		} else {
+			haveJob = true;
+			console.log('Joined an bank.')
+			return 'You have a empty bank. Start the job and earn more BW coins!'
+		}
+	},
+	bank(txt){
+		console.log('Welcome to the Bonzi bank! On this command for bank, you can earn tokens by any person has a work, only one can work and put in cooldown to work another! Try now! To read this bank, do s!bank_help')
+        return 'Welcome to the Bonzi bank! On this command for bank, you can earn tokens by any person has a work, only one can work and put in cooldown to work another! Try now! To read this bank, do s!bank_help'
+	},
+	bank_help(txt){
+		console.log('Help? Okay I got of them. Just try s!bank_new to get a new bank. And basically if you want to work within money, just do s!bank_work or s!bank_slut to make money and your money lifetime will be. To deposit tokens into bank, do s!bank_dep to deposit all tokens.')
+        return 'Help? Okay I got of them. Just try s!bank_new to get a new bank. And basically if you want to work within money, just do s!bank_work or s!bank_slut to make money and your money lifetime will be. To deposit tokens into bank, do s!bank_dep to deposit all tokens.'
+	},
+	bank_work(txt){
+		if(jobCooldown==false){
+		if(haveJob==true){
+		setTimeout(function(){jobCooldown = false}, 10000)
+			for (let i = 0; i < Math.floor(Math.random()*500); i++) {banktokensUnz++;banktokens++;banktokenBankLife = banktokens}
+			console.log('You got a job earning to ' + banktokensUnz + ' tokens.')
+        socket.emit('talk', {text:'You got ' + banktokensUnz + ' BW coin tokens.'})
+		banktokensUnz = 0;
+		jobCooldown = true;
+		jobIsDeposit = true;
+		jobWorks++;
+		} else {
+			console.log('You need to have a bank first.')
+			return 'Please get a job doing s!bank_new.'
+		}
+		} else { return 'On cooldown! Please him rest of the job for 10 seconds.' }
+	},
+	work(txt){
+		if(jobCooldown==false){
+		if(haveJob==true){
+		setTimeout(function(){jobCooldown = false}, 10000)
+			for (let i = 0; i < Math.floor(Math.random()*500); i++) {banktokensUnz++;banktokens++;banktokenBankLife = banktokens}
+			console.log('You got a job earning to ' + banktokensUnz + ' tokens.')
+        socket.emit('talk', {text:'You got ' + banktokensUnz + ' BW coin tokens.'})
+		banktokensUnz = 0;
+		jobCooldown = true;
+		jobIsDeposit = true;
+		jobWorks++;
+		} else {
+			console.log('You need to have a bank first.')
+			return 'Please get a job doing s!bank_new.'
+		}
+		} else { return 'On cooldown! Please him rest of the job for 10 seconds.' }
+	},
+	bank_slut(txt){
+		if(jobCooldown==false){
+		if(haveJob==true){
+			for (let i = 0; i < Math.floor(Math.random()*2000); i++) {banktokensUnz++;banktokens++;banktokenBankLife = banktokens}
+			console.log('You got a job earning to ' + banktokensUnz + ' tokens with slut to clear his benefits.')
+        socket.emit('talk', {text:'You got ' + banktokensUnz + ' BW coin tokens.'})
+		banktokensUnz = 0;
+		jobCooldown = true;
+		jobIsDeposit = true;
+		setTimeout(function(){jobCooldown = false}, 10000)
+		jobSluts++;
+		} else {
+			console.log('You need to have a bank first.')
+			return 'Please get a job doing s!bank_new.'
+		}
+		} else { return 'On cooldown! Please him rest of the job for 10 seconds.' }
+	},
+	slut(txt){
+		if(jobCooldown==false){
+		if(haveJob==true){
+			for (let i = 0; i < Math.floor(Math.random()*2000); i++) {banktokensUnz++;banktokens++;banktokenBankLife = banktokens}
+			console.log('You got a job earning to ' + banktokensUnz + ' tokens with slut to clear his benefits.')
+        socket.emit('talk', {text:'You got ' + banktokensUnz + ' BW coin tokens.'})
+		banktokensUnz = 0;
+		jobCooldown = true;
+		jobIsDeposit = true;
+		setTimeout(function(){jobCooldown = false}, 10000)
+		jobSluts++;
+		} else {
+			console.log('You need to have a bank first.')
+			return 'Please get a job doing s!bank_new.'
+		}
+		} else { return 'On cooldown! Please him rest of the job for 10 seconds.' }
+	},
+	bank_dep(txt){
+		if(haveJob==true){
+		if(jobIsDeposit==true){
+			console.log('Crawled ' + banktokens + ' BW coin tokens to our bank.')
+			socket.emit('talk', {text:'Deposited ' + banktokens + ' BW coin tokens to our bank.'})
+			jobIsDeposit = false;
+		bankDepositCount++;
+		banktokenBank = banktokens;
+		banktokens = 0;
+		} else {
+			console.log('You need to deposit when you have a work.')
+			return 'You need to deposit when you have a work. Get a work with s!bank_work for small cash, or s!bank_slut for bigger.'
+		}
+		} else { return 'Please get a job doing s!bank_new.' }
+	},
+	bank_deposit(txt){
+		if(haveJob==true){
+		if(jobIsDeposit==true){
+			console.log('Crawled ' + banktokens + ' BW coin tokens to our bank.')
+			socket.emit('talk', {text:'Deposited ' + banktokens + ' BW coin tokens to our bank.'})
+			jobIsDeposit = false;
+		bankDepositCount++;
+		banktokenBank = banktokens;
+		banktokens = 0;
+		} else {
+			console.log('You need to deposit when you have a work.')
+			return 'You need to deposit when you have a work. Get a work with s!bank_work for small cash, or s!bank_slut for bigger.'
+		}
+		} else { return 'Please get a job doing s!bank_new.' }
+	},
+	dep(txt){
+		if(haveJob==true){
+		if(jobIsDeposit==true){
+			console.log('Crawled ' + banktokens + ' BW coin tokens to our bank.')
+			socket.emit('talk', {text:'Deposited ' + banktokens + ' BW coin tokens to our bank.'})
+			jobIsDeposit = false;
+		bankDepositCount++;
+		banktokenBank = banktokens;
+		banktokens = 0;
+		} else {
+			console.log('You need to deposit when you have a work.')
+			return 'You need to deposit when you have a work. Get a work with s!bank_work for small cash, or s!bank_slut for bigger.'
+		}
+		} else { return 'Please get a job doing s!bank_new.' }
+	},
+	deposit(txt){
+		if(haveJob==true){
+		if(jobIsDeposit==true){
+			console.log('Crawled ' + banktokens + ' BW coin tokens to our bank.')
+			socket.emit('talk', {text:'Deposited ' + banktokens + ' BW coin tokens to our bank.'})
+			jobIsDeposit = false;
+		bankDepositCount++;
+		banktokenBank = banktokens;
+		banktokens = 0;
+		} else {
+			console.log('You need to deposit when you have a work.')
+			return 'You need to deposit when you have a work. Get a work with s!bank_work for small cash, or s!bank_slut for bigger.'
+		}
+		} else { return 'Please get a job doing s!bank_new.' }
+	},
+	bank_stats(txt){
+		if(haveJob==true){
+			console.log('Bank Stats:\nRecent Tokens: ' + banktokens + '\nLifetime tokens: ' + banktokenBankLife + '\nYour bank: ' + banktokenBank + '\nTimes deposited: ' + bankDepositCount + '\nTimes worked: ' + jobWorks + '\nTimes sluted: ' + jobSluts)
+        return ('Bank Stats:<br>Recent Tokens: ' + [banktokens] + '<br>Lifetime tokens: ' + [banktokenBankLife] + '<br>Your bank: ' + [banktokenBank] + '<br>Times deposited: ' + [bankDepositCount] + '<br>Times worked: ' + [jobWorks] + '<br>Times sluted: ' + [jobSluts])
+		} else {
+			return 'Please get a job doing s!bank_new, to view the stats.'
+		}
+	},
+	bank_add(txt){
+		if(haveJob==true){
+		if(banktokenBank > 10000){
+			for (let i = 0; i < Math.floor(Math.random()*5000); i++) {banktokens++;banktokenBank = banktokens++}
+			console.log('Added tokens into random.')
+        return ('Added tokens for random.')
+		} else {
+			return 'You need to have least for 10,000 BW coin tokens in the end to unlock this feature.'
+		}
+		} else { return 'Please get a job doing s!bank_new.'}
+	},
+	bank_bypass(txt){
+		if(haveJob==true){
+		if(banktokenBank > 10000){
+			jobCooldown = false;
+			console.log('Bypassed.')
+        return ('Bypassed the job cooldown.')
+		} else {
+			return 'You need to have least for 10,000 BW coin tokens in the end to unlock this feature.'
+		}
+		} else { return 'Please get a job doing s!bank_new.'}
+	},
+	eat(txt){
+		if(banktokenBank > 100){
+		for (let i = 0; i < 100; i++) {banktokenBank--}
+		setTimeout(function(){socket.emit('command', {list:['banana']})}, 5000)
+		console.log('Nom nom. Bananas.')
+        return 'Yummy!'
+		} else { return 'You need earn tokens to order a banana!' }
+	},
 	ics(txt){
 		cmdcount++
 		console.log('ICS creepypasta posted.')
