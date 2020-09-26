@@ -120,6 +120,38 @@ Note: this is an admin abuse do not feel to try for a few times.
 * tool_unban -  unbans an person from the server they can now able to join with specified IP address.
 ```
 
+# Bank
+We just announced the command - bank; to earn BW coin tokens and deposit all into bank.
+
+**Bank commands:**
+```
+* bank - sends the description for command bank.
+* bank_help - sends the instructions.
+* bank_new - start a bank.
+* bank_work - work with max 500 tokens (shr. work).
+* bank_slut - work girls with max 2000 (shr. slut).
+* bank_dep - deposits all tokens (related for s!bank_deposit, deposit, dep).
+* bank_stats - shows the bank stats.
+```
+
+## Earning Locks
+By earning these options to be unlocked, you need have least of 10000 BW coin tokens.
+```
+* bank_add - adds a random token number.
+* bank_bypass - Bypasses the job cooldown.
+```
+
+## Configuration
+```
+* tool_bankrupt - resets and removes the job.
+```
+
+## Other
+```
+* eat - sends "Yummy!" text with animated banana (every definite cost is 100 tokens).
+```
+
+
 If you want to support me for devs, just try uploading on my site: http://onuteworld.tk:3005
 
 Caution! Don't DO abusive things in the upload site. Or you get something like that, I ground children.
