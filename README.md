@@ -38,6 +38,7 @@ npm install discord.js -f
 ```
 before you installed it, your bot is connecting on the server and for your token to have been joined.
 Without installing discord.js may explicitly fail to run a script, because there's no module over there.
+Make sure to add your channel called "sbot" from any category that bot can detect it otherwise it will NOT probably log an channel. Please make more details.
 
 # Tool configuration
 s!tool command which it is configures bot settings to grant or revoke.
