@@ -14,7 +14,7 @@ client.on('ready', () => {
 })
 });
 
-client.login('NzcwNjk1ODgzNDYxMzYxNzQ1.X5hUeQ.9XABAmpmkk44LiUDt7seqTn1tUQ');
+client.login('token');
 console.log('(-|--------------------------------|-)')
 console.log('(-|                                |-)')
 console.log('(-|    WELCOME TO THE BONZIWORLD   |-)')
