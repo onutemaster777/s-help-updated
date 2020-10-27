@@ -22,6 +22,9 @@ Your bot will work on a specified website, as much for configurations.
 
 # Discord Bot
 
+
+discord failed to start
+
 noreload version
 
 Before you have a discord bot added, make sure to change your important bot's token. Do you want to be confused yet?
