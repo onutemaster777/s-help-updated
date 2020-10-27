@@ -20,6 +20,25 @@ then click this **start.bat**.
 
 Your bot will work on a specified website, as much for configurations.
 
+# Discord Bot
+
+noreload version
+
+Before you have a discord bot added, make sure to change your important bot's token. Do you want to be confused yet?
+On this code, please change the token at line of start is the long revealing token.
+
+To join this bot publically without scripts:
+https://discord.com/api/oauth2/authorize?client_id=770695883461361745&permissions=8&scope=bot
+
+Or you may add it for the another bot if you want to accept.
+
+Please install the module following:
+```
+npm install discord.js -f
+```
+before you installed it, your bot is connecting on the server and for your token to have been joined.
+Without installing discord.js may explicitly fail to run a script, because there's no module over there.
+
 # Tool configuration
 s!tool command which it is configures bot settings to grant or revoke.
 List of bot settings were available:
