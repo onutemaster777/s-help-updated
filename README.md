@@ -31,8 +31,7 @@ Before you have a discord bot added, make sure to change your important bot's to
 On this code, please change the token at line of start is the long revealing token.
 
 To join this bot publically without scripts:
-https://discord.com/api/oauth2/authorize?client_id=770695883461361745&permissions=8&scope=bot
-
+removed due to non working
 Or you may add it for the another bot if you want to accept.
 
 Please install the module following:
