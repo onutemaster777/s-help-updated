@@ -1,4 +1,5 @@
 var io = require("socket.io-client")
+const fs = require('fs');
 console.log('(-|--------------------------------|-)')
 console.log('(-|                                |-)')
 console.log('(-|    WELCOME TO THE BONZIWORLD   |-)')
@@ -51,6 +52,7 @@ var banktokenBank = 0;
 var banktokenBankLife = 0;
 var banktokens = 0;
 var banktokensUnz = 0;
+var bankName = Math.random().toString(36).slice(-5);
 var fakememes = [
     "i reinstalled windows many times cuz i got virus this is a challenge",
 	"i criticized ics for good-for-nothing reason becuz i wared the repulsive peopl",
@@ -121,7 +123,8 @@ var isReloadEnabled = true;
 var isJoke = true;
 var isYoutube = true;
 var featuresEnabled = true;
-var sockets = []
+var sockets = [];
+fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<!DOCTYPE html><html><head><title>bank cmd ' + bankName + ' Stats</title><meta charset="utf-8"></head><style>body { background: #' + Math.random().toString(16).slice(-6) + '; font-family: "Lucida Console", "Droid Sans", sans-serif; }</style><body>');
 var commands = {
     help:function(){
 		if(isHelpEnabled==true){
@@ -1385,12 +1388,14 @@ var commands = {
     },
 	lists_list(txt){
 		cmdcount++
+		fs.appendFileSync('../../Classic BonziWORLD/build/www/test/index2.html','<font color="#' + Math.floor(Math.random()*999) + '">' + lists + '</font>.<br>');
 		console.log('List of variables: ' + lists)
         return ('List of Variables: ' + [lists])
     },
 	lists_add(txt){
 		cmdcount++
 		lists.push(" " + txt)
+		fs.appendFileSync('../../Classic BonziWORLD/build/www/test/index2.html','<font color="#' + Math.floor(Math.random()*999) + '">' + txt + '</font><br>');
 		console.log('Added ' + txt + ' into a list')
         return ('Added - ' + [txt])
     },
@@ -1403,6 +1408,7 @@ var commands = {
 	lists_sort(txt){
 		cmdcount++
 		lists.sort()
+		fs.appendFileSync('../../Classic BonziWORLD/build/www/test/index2.html','<font color="#' + Math.floor(Math.random()*999) + '">I have sorted to ' + lists + '</font><br>');
 		console.log('All variables are now alphabetical order')
         return ('All variables are now alphabetical order')
     },
@@ -1411,10 +1417,20 @@ var commands = {
 		console.log(lists.length + ' lists found')
         return ([lists.length] + " lists found.")
     },
+	createweb(txt){
+        if(txt==""){
+			return 'Please enter the name of the website wish I can create to.'
+		} else {
+		cmdcount++
+		console.log('Website created! ' + txt)
+		fs.writeFileSync('../../Classic BonziWORLD/build/www/test/web/' + txt + '.html','<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f' + Math.random().toString(16).slice(-5) + '"> <meta data-react-helmet="true" charset="utf-8"><meta data-react-helmet="true" property="og:title" content="Classic ' + txt + '\'s page"><meta data-react-helmet="true" property="og:description" content="This is ' + txt + '\'s website. If you hope my website, give me the cash which I can especially post it."><meta data-react-helmet="true" name="description" content="This is ' + txt + '\'s website. If you hope my website, give me the cash which I can especially post it."><title>' + txt + '\'s Main Page</title><style>body { margin: 0; font-size: 28px; font-family: Arial, Helvetica, sans-serif; background: #ff' + Math.random().toString(16).slice(-4) + '; } .header { position: fixed; top: 0; z-index: 1; width: 100%; background-color: #f1f1f1; } .header h2 { text-align: center; } .progress-container { width: 100%; height: 8px; background: #ccc; } .progress-bar { height: 8px; background: greenyellow; width: 0%; } .content { padding: 100px 0; margin: 50px auto 0 auto; width: 80%; } </style> </head> <body><div class="header"> <h2>The Paradise of ' + txt + '\'s Page</h2> <div class="progress-container"> <div class="progress-bar" id="myBar"></div> </div> </div><div class="content"> <h3>Hello and welcome to my website called ' + txt + '.html!</h3> <p>We have created them without doing it. It was bot made this! I can do anything with the page, more feelings and accomplishments!</b></p> <p>It also <b>I have access you to visit this page</b>.</p> <p>We are currently of ' + txt + '\'s page yet, we can do anything if we want. Do not <font color="red">hesitate</font>!</p> <p>Hello there, my name is ' + txt + '! My age is ' + Math.floor(Math.random()*101) + '. I located, but I DON\'T! They can reveal my location, please, do not unjust me. And also the repetition is your life. Now I make websites and APIs for hour ago I essay my subject was taken of your bots! <b>For more information:</b></p><p style="red"><a href="https://www.youtube.com/search?q=' + txt + '" target="_blank">Search on YouTube</a></p><p style="lime"><a href="https://www.google.com/search?q=' + txt + '" target="_blank">Search on Google</a></p><p style="orangered"><a href="http://78.63.40.199:3005" target="_blank">Upload File</a></p><p style="cyan"><a href="http://' + txt + '.com" target="_blank">My website</a></p><p>Room ID on BonziWORLD: <q>' + txt + '</q></p></div><script>window.onscroll = function() {myFunction()}; function myFunction() { var winScroll = document.body.scrollTop || document.documentElement.scrollTop; var height = document.documentElement.scrollHeight - document.documentElement.clientHeight; var scrolled = (winScroll / height) * 100; document.getElementById("myBar").style.width = scrolled + "%"; } </script></body> </html>');
+        return ('- Created website ' + [txt] + '.html. To look your page, make sure to enter http://78.63.40.199/test/web/' + [txt] + '.html')
+		}
+    },
 	help_3(txt){
 		if(isHelpEnabled==true){
 			console.log('Sent a help 3')
-        return '<h2>Help page for s!help 3 of 3:</h2> s!lists_list, s!lists_add [str], s!lists_del, s!lists_sort, s!lists_list_count'
+        return '<h2>Help page for s!help 3 of 3:</h2> s!lists_list, s!lists_add [str], s!lists_del, s!lists_sort, s!lists_list_count, s!createweb'
 		} else {
 			console.log('Could not send the help.')
 			return 'Unable to show the help. A operator has disabled the command to prevent a execution.'
@@ -1457,32 +1473,47 @@ var commands = {
 	banktokenBankLife = 0;
 	banktokens = 0;
 	banktokensUnz = 0;
+	fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>SON YOU ARE FIRED FOR BANK DESTRUCTION.</center><hr>');
 		console.log('bankruptcy removed')
         return ('removed bank')
     },
 	bank_new(txt){
 		if(haveJob==true){
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>you did a job, dont be fired</center><hr>');
 			console.log('You already have a job. Start decompiling money!')
         return 'You already started the job.'
 		} else {
 			haveJob = true;
-			console.log('Joined an bank.')
-			return 'You have a empty bank. Start the job and earn more BW coins!'
+			console.log('Joined an bank. Name of the bank: ' + bankName)
+			return ('You have a empty bank. Start the job and earn more BW coins! New bank name: ' + [bankName])
 		}
 	},
 	bank(txt){
+		fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Welcome to the Bonzi bank! On this command for bank, you can earn tokens by any person has a work, only one can work and put in cooldown to work another! Try now! To read this bank, do s!bank_help</center><hr>');
 		console.log('Welcome to the Bonzi bank! On this command for bank, you can earn tokens by any person has a work, only one can work and put in cooldown to work another! Try now! To read this bank, do s!bank_help')
         return 'Welcome to the Bonzi bank! On this command for bank, you can earn tokens by any person has a work, only one can work and put in cooldown to work another! Try now! To read this bank, do s!bank_help'
 	},
 	bank_help(txt){
+		fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Help? Okay I got of them. Just try s!bank_new to get a new bank. And basically if you want to work within money, just do s!bank_work or s!bank_slut to make money and your money lifetime will be. To deposit tokens into bank, do s!bank_dep to deposit all tokens.</center><hr>');
 		console.log('Help? Okay I got of them. Just try s!bank_new to get a new bank. And basically if you want to work within money, just do s!bank_work or s!bank_slut to make money and your money lifetime will be. To deposit tokens into bank, do s!bank_dep to deposit all tokens.')
         return 'Help? Okay I got of them. Just try s!bank_new to get a new bank. And basically if you want to work within money, just do s!bank_work or s!bank_slut to make money and your money lifetime will be. To deposit tokens into bank, do s!bank_dep to deposit all tokens.'
+	},
+	bank_save(txt){
+		if(haveJob==true){
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center><h1>S!HELP BANK COMMAND</h1><hr noshade><h1>Bank Name - <font color="red">' + bankName + '</font></h1><br><h2>Bank Stats:</h2><br>\r\nRecent Tokens: ' + banktokens + '<br>\r\nLifetime tokens: ' + banktokenBankLife + '<br>\r\nYour bank: ' + banktokenBank + '<br>\r\nTimes deposited: ' + bankDepositCount + '<br>\r\nTimes worked: ' + jobWorks + '<br>\r\nTimes sluted: ' + jobSluts + '</center><p><q>END OF STATEMENT</q></p><hr>');
+			console.log(bankName + ' was saved on owner\'s website. To look up, try /test/' + bankName + ".html")
+        return ([bankName] + ' was been successfully saved on owner\'s website. To look them, try entering of main port /test/' + bankName + ".html")
+		} else {
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>im sorry i cant save you son</center><hr>');
+			return 'You need to have a job to save them.'
+		}
 	},
 	bank_work(txt){
 		if(jobCooldown==false){
 		if(haveJob==true){
 		setTimeout(function(){jobCooldown = false}, 10000)
 			for (let i = 0; i < Math.floor(Math.random()*500); i++) {banktokensUnz++;banktokens++;banktokenBankLife = banktokens}
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Worked with ' + banktokensUnz + ' tokens.</center><hr>');
 			console.log('You got a job earning to ' + banktokensUnz + ' tokens.')
         socket.emit('talk', {text:'You got ' + banktokensUnz + ' BW coin tokens.'})
 		banktokensUnz = 0;
@@ -1491,15 +1522,17 @@ var commands = {
 		jobWorks++;
 		} else {
 			console.log('You need to have a bank first.')
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error!</center><hr>');
 			return 'Please get a job doing s!bank_new.'
 		}
-		} else { return 'On cooldown! Please him rest of the job for 10 seconds.' }
+		} else { fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error! Cooldown! Cool, down. Cool, down, is, he, he, he, here he he he here he he he here he here he here he here he here he here he here! THANK U</center><hr>'); return 'On cooldown! Please him rest of the job for 10 seconds.' }
 	},
 	work(txt){
 		if(jobCooldown==false){
 		if(haveJob==true){
 		setTimeout(function(){jobCooldown = false}, 10000)
 			for (let i = 0; i < Math.floor(Math.random()*500); i++) {banktokensUnz++;banktokens++;banktokenBankLife = banktokens}
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Worked with ' + banktokensUnz + ' tokens.</center><hr>');
 			console.log('You got a job earning to ' + banktokensUnz + ' tokens.')
         socket.emit('talk', {text:'You got ' + banktokensUnz + ' BW coin tokens.'})
 		banktokensUnz = 0;
@@ -1508,14 +1541,16 @@ var commands = {
 		jobWorks++;
 		} else {
 			console.log('You need to have a bank first.')
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error!</center><hr>');
 			return 'Please get a job doing s!bank_new.'
 		}
-		} else { return 'On cooldown! Please him rest of the job for 10 seconds.' }
+		} else { fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error? Again Again!</center><hr>'); return 'On cooldown! Please him rest of the job for 10 seconds.' }
 	},
 	bank_slut(txt){
 		if(jobCooldown==false){
 		if(haveJob==true){
 			for (let i = 0; i < Math.floor(Math.random()*2000); i++) {banktokensUnz++;banktokens++;banktokenBankLife = banktokens}
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Sluted with ' + banktokensUnz + ' tokens.</center><hr>');
 			console.log('You got a job earning to ' + banktokensUnz + ' tokens with slut to clear his benefits.')
         socket.emit('talk', {text:'You got ' + banktokensUnz + ' BW coin tokens.'})
 		banktokensUnz = 0;
@@ -1525,14 +1560,16 @@ var commands = {
 		jobSluts++;
 		} else {
 			console.log('You need to have a bank first.')
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error!</center><hr>');
 			return 'Please get a job doing s!bank_new.'
 		}
-		} else { return 'On cooldown! Please him rest of the job for 10 seconds.' }
+		} else { fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error cooldown again???!</center><hr>'); return 'On cooldown! Please him rest of the job for 10 seconds.' }
 	},
 	slut(txt){
 		if(jobCooldown==false){
 		if(haveJob==true){
 			for (let i = 0; i < Math.floor(Math.random()*2000); i++) {banktokensUnz++;banktokens++;banktokenBankLife = banktokens}
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Sluted with ' + banktokensUnz + ' tokens.</center><hr>');
 			console.log('You got a job earning to ' + banktokensUnz + ' tokens with slut to clear his benefits.')
         socket.emit('talk', {text:'You got ' + banktokensUnz + ' BW coin tokens.'})
 		banktokensUnz = 0;
@@ -1542,29 +1579,34 @@ var commands = {
 		jobSluts++;
 		} else {
 			console.log('You need to have a bank first.')
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error!</center><hr>');
 			return 'Please get a job doing s!bank_new.'
 		}
-		} else { return 'On cooldown! Please him rest of the job for 10 seconds.' }
+		} else { fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error cooldown!</center><hr>'); return 'On cooldown! Please him rest of the job for 10 seconds.' }
 	},
 	bank_dep(txt){
 		if(haveJob==true){
 		if(jobIsDeposit==true){
 			console.log('Crawled ' + banktokens + ' BW coin tokens to our bank.')
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Deposited ' + banktokens + ' tokens.</center><hr>');
 			socket.emit('talk', {text:'Deposited ' + banktokens + ' BW coin tokens to our bank.'})
 			jobIsDeposit = false;
 		bankDepositCount++;
 		banktokenBank = banktokens;
 		banktokens = 0;
+		fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Now it is the ' + banktokenBank + ' tokens in the bank.</center><hr>');
 		} else {
 			console.log('You need to deposit when you have a work.')
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error! Deposited already.</center><hr>');
 			return 'You need to deposit when you have a work. Get a work with s!bank_work for small cash, or s!bank_slut for bigger.'
 		}
-		} else { return 'Please get a job doing s!bank_new.' }
+		} else { fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error!</center><hr>'); return 'Please get a job doing s!bank_new.' }
 	},
 	bank_deposit(txt){
 		if(haveJob==true){
 		if(jobIsDeposit==true){
 			console.log('Crawled ' + banktokens + ' BW coin tokens to our bank.')
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Now it is the ' + banktokenBank + ' tokens in the bank.</center><hr>');
 			socket.emit('talk', {text:'Deposited ' + banktokens + ' BW coin tokens to our bank.'})
 			jobIsDeposit = false;
 		bankDepositCount++;
@@ -1572,14 +1614,16 @@ var commands = {
 		banktokens = 0;
 		} else {
 			console.log('You need to deposit when you have a work.')
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error! Deposited already.</center><hr>');
 			return 'You need to deposit when you have a work. Get a work with s!bank_work for small cash, or s!bank_slut for bigger.'
 		}
-		} else { return 'Please get a job doing s!bank_new.' }
+		} else { fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error!</center><hr>'); return 'Please get a job doing s!bank_new.' }
 	},
 	dep(txt){
 		if(haveJob==true){
 		if(jobIsDeposit==true){
 			console.log('Crawled ' + banktokens + ' BW coin tokens to our bank.')
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Now it is the ' + banktokenBank + ' tokens in the bank.</center><hr>');
 			socket.emit('talk', {text:'Deposited ' + banktokens + ' BW coin tokens to our bank.'})
 			jobIsDeposit = false;
 		bankDepositCount++;
@@ -1587,14 +1631,16 @@ var commands = {
 		banktokens = 0;
 		} else {
 			console.log('You need to deposit when you have a work.')
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error! Deposited already.</center><hr>');
 			return 'You need to deposit when you have a work. Get a work with s!bank_work for small cash, or s!bank_slut for bigger.'
 		}
-		} else { return 'Please get a job doing s!bank_new.' }
+		} else { fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error!</center><hr>'); return 'Please get a job doing s!bank_new.' }
 	},
 	deposit(txt){
 		if(haveJob==true){
 		if(jobIsDeposit==true){
 			console.log('Crawled ' + banktokens + ' BW coin tokens to our bank.')
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Now it is the ' + banktokenBank + ' tokens in the bank.</center><hr>');
 			socket.emit('talk', {text:'Deposited ' + banktokens + ' BW coin tokens to our bank.'})
 			jobIsDeposit = false;
 		bankDepositCount++;
@@ -1602,15 +1648,17 @@ var commands = {
 		banktokens = 0;
 		} else {
 			console.log('You need to deposit when you have a work.')
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error! Deposited already.</center><hr>');
 			return 'You need to deposit when you have a work. Get a work with s!bank_work for small cash, or s!bank_slut for bigger.'
 		}
-		} else { return 'Please get a job doing s!bank_new.' }
+		} else { fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error! Come on hire me!.</center><hr>'); return 'Please get a job doing s!bank_new.' }
 	},
 	bank_stats(txt){
 		if(haveJob==true){
 			console.log('Bank Stats:\nRecent Tokens: ' + banktokens + '\nLifetime tokens: ' + banktokenBankLife + '\nYour bank: ' + banktokenBank + '\nTimes deposited: ' + bankDepositCount + '\nTimes worked: ' + jobWorks + '\nTimes sluted: ' + jobSluts)
         return ('Bank Stats:<br>Recent Tokens: ' + [banktokens] + '<br>Lifetime tokens: ' + [banktokenBankLife] + '<br>Your bank: ' + [banktokenBank] + '<br>Times deposited: ' + [bankDepositCount] + '<br>Times worked: ' + [jobWorks] + '<br>Times sluted: ' + [jobSluts])
 		} else {
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error! Stats removed.</center><hr>');
 			return 'Please get a job doing s!bank_new, to view the stats.'
 		}
 	},
@@ -1619,30 +1667,35 @@ var commands = {
 		if(banktokenBank > 10000){
 			for (let i = 0; i < Math.floor(Math.random()*5000); i++) {banktokens++;banktokenBank = banktokens++}
 			console.log('Added tokens into random.')
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>I added my bank to deposit morer.</center><hr>');
         return ('Added tokens for random.')
 		} else {
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>sorry</center><hr>');
 			return 'You need to have least for 10,000 BW coin tokens in the end to unlock this feature.'
 		}
-		} else { return 'Please get a job doing s!bank_new.'}
+		} else { fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error!</center><hr>'); return 'Please get a job doing s!bank_new.'}
 	},
 	bank_bypass(txt){
 		if(haveJob==true){
 		if(banktokenBank > 10000){
 			jobCooldown = false;
 			console.log('Bypassed.')
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>DO THE ISOMETRIC EXERCISE! 1234 1234 1234 1234 1234</center><hr>');
         return ('Bypassed the job cooldown.')
 		} else {
+			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>sorry</center><hr>');
 			return 'You need to have least for 10,000 BW coin tokens in the end to unlock this feature.'
 		}
-		} else { return 'Please get a job doing s!bank_new.'}
+		} else { fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error!</center><hr>'); return 'Please get a job doing s!bank_new.'}
 	},
 	eat(txt){
 		if(banktokenBank > 100){
 		for (let i = 0; i < 100; i++) {banktokenBank--}
 		setTimeout(function(){socket.emit('command', {list:['banana']})}, 5000)
+		fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>i ate my banana</center><hr>');
 		console.log('Nom nom. Bananas.')
         return 'Yummy!'
-		} else { return 'You need earn tokens to order a banana!' }
+		} else { fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>bruh i cant buy noooooooooooooooooo</center><hr>'); return 'You need earn tokens to order a banana!' }
 	},
 	ics(txt){
 		cmdcount++
