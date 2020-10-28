@@ -20,6 +20,17 @@ then click this **start.bat**.
 
 Your bot will work on a specified website, as much for configurations.
 
+# fs
+
+Before you ran it, you don't need to install it.
+
+Make sure change the directories otherwise it will give you an error and crashes the bot.
+.. - back to directory
+before you typing /, the slash is going to folder where is
+you don't have to go to the C:\
+
+Check it works or not
+
 # Discord Bot
 
 
