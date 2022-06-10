@@ -10,11 +10,11 @@ console.log('(-|                                |-)')
 console.log('(-|            ENTERING...         |-)')
 console.log('(-|                                |-)')
 console.log('(-|--------------------------------|-)')
-var socket = io("http://localhost:3000")
+var socket = io("http://server.erik.red:3000")
 socket.emit('login',{name:'Bank (d!help)'})
 socket.on('reconnected',reconnected)
 var reconnected = function(){
-    var socket = io("http://localhost:3000")
+    var socket = io("http://server.erik.red:3000")
     socket.emit('login',{name:'Bank (d!help)'})
     socket.on('talk',function(data){
         var text = data.text
@@ -43,6 +43,7 @@ var banktokenBank = 0;
 var banktokenBankLife = 0;
 var banktokens = 0;
 var banktokensUnz = 0;
+setInterval(function(){maggot}, 1800000);
 var sockets = []
 var commands = {
     help:function(){

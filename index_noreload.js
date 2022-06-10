@@ -1,5 +1,7 @@
 var io = require("socket.io-client")
-const fs = require('fs');
+var fs = require("fs")
+const deepai = require('deepai');
+deepai.setApiKey('d19f4252-8813-46bb-8d4e-c6ea1c77b3a7');
 console.log('(-|--------------------------------|-)')
 console.log('(-|                                |-)')
 console.log('(-|    WELCOME TO THE BONZIWORLD   |-)')
@@ -9,11 +11,13 @@ console.log('(-|                                |-)')
 console.log('(-|            ENTERING...         |-)')
 console.log('(-|            NO RELOAD           |-)')
 console.log('(-|--------------------------------|-)')
-var socket = io("http://localhost")
+var socket = io("http://server.erik.red:3000")
 socket.emit('login',{name:'s!help (FE)'})
+socket.emit('talk', {text:'We have disabled reloading, joking, and flood due to policy. Fuck off kiddies.\nOh and also, orange crazy Anonymous, if you\'re watching this, you are pointless lard for spamming command shit so you dont think what command will you use. So fuck off bullshit, hope you understand. Now start executing and no more shitty floods in this site or else erik will ban your IP address permanently. I hope if you sure this.'})
 socket.on('reconnected',reconnected)
+
 var reconnected = function(){
-    var socket = io("http://localhost")
+    var socket = io("http://server.erik.red:3000")
     socket.emit('login',{name:'s!help (FE)'})
     socket.on('talk',function(data){
         var text = data.text
@@ -54,63 +58,149 @@ var banktokens = 0;
 var banktokensUnz = 0;
 var bankName = Math.random().toString(36).slice(-5);
 var fakememes = [
-    "i reinstalled windows many times cuz i got virus this is a challenge",
-	"i criticized ics for good-for-nothing reason becuz i wared the repulsive peopl",
-	"i deleted system32 on my computer and i am playing fortnite with freakin deleted system32 folder lmao",
-	"i play roblox every day and i got 999999999 robux for free",
-	"i play pickcrafter to get null blocks for 10000",
-	"i reporting google apps to be suspended for good but it dont work i have to go to the google headquarters to bomb this headquarter with a massively cells tablets and i hope Google servers ever died eventually and they never browse on internet forever and they need to move to another search engine",
-	"i made the fucking greatest cake - the fucking poopcake, how about you will join the shitty party?",
-	"i made the clown robot :clown:",
-	"i default danced by using my dance like fortnight and steps around tatatatata lala lala lala lalalala",
-	"i hated les inexusibles for nothing",
-	"i made the good videos but they not watching betray us",
-	"ics wont leave me alone because i did something wrong with",
-	"ics is fucking grounded go to your room immediately you scoutfag you are fucking compensated and meaned",
-	"i sorried to ics but she didnt accept my apology i think i will die",
-	"itzcrazyscout shoot my head please say goodbye",
-	"itzcrazyscout terminate my channel plz",
-	"ics please ground me RIGHT NOW i give your mass of hard drive whatever",
-	"i hypocrited my opinions doing as myself",
-	"engage me itzcrazyscout engage me right nooooooooooooooooooooooooooooow",
-	"im playing minecraft on hardcore mode and then i lost my items in 0 score points",
-	"i play lg sta-p53es i type any number wish we want",
-	"mommy ona i didnt do anything wrong he impersonated me can you report him please",
-	"Danielius paulavičius mom i am not a fault, i can\'t through this channel because they impersonating me for no apparent reason",
-	"i created nkyt show account and now they will hate me for hard shit",
-	"i reported to nkyt and arsikphonegreat but it didnt work i have to hack this account and delete with these all videos and alts",
-	"i hacked itzcrazyscout\'s computer i deleted system32 folder for admin abusing stall they will not gonna to recover this computer this is will pay for this for ADMIN ABUSING!!!",
-	"i hacked zander blake\'s computer and i steal the files",
-	"itzcrazyscout hacked my computer i have to turn off wifi to prevent hacks *turns off* thats good.",
-	"ics doxxed my ip information now i have to assign another ip to improve my brain cells and buy the ip",
-	"i buyed the shitty pirated site then i got dmca\'ed",
-	"i love losky so much but ics still hates me and knows me i am, ics is a psychopath, psychology and mentality",
-	"i forcing seamusmario to love and hug losky with loving syringe",
-	"ics prepare to die get stomach exploded you ass cockroach adminfag",
-	"my friend ics and itzchris are watching oggy and the cockroaches within all of episodes",
-	"whatsoever, ics. tell your real born date and real name, if you dont i will poop on your head with the bucket and what\'s you will get deserve not giving the name and date",
-	"ics goes to jail becuz he is a parole, quadruple killer, people banishment, aura killer and such of a things i think he is a kiddie for now permanent",
-	"crazy shut this server down because you are admin abuser and bullying me like an ass of jolly",
-	"i unbanned on bonziworld 2 discord server with vpn or i changed the ip address and works finally",
-	"i imagine for my little pony friendship is magic characters to sex with twilight sparkle, rainbow dash, applejack, pinkie pie, rarity, fluttershy, spike, princess celestia, sweetie belle, big mac, derpy hooves and more",
-	"i dislike bot thekantapapa videos for no reason",
-	"i read the rules in one second on bonziworld 2",
-	"give the bonziworld 3 for now",
-	"ok yall grounded grounded grounded grounded grounded grounded for 3879527590759295729697444795157275275970929773035962765272673526735 years go to ur rooms now",
-	"itzcrazyscout? no? more like itzfuckshitout! oh my god this user sucks i hate this man die this shitass forever and ever and ever and ever",
-	"i do play classic games on samsung sgh-c160m when i cry everytim",
-	"i installed windows xp and works fine and silently",
-	"i am upgraded to intel i9-9900k from a old i3 processor",
-	"i stole the republic of gamers pc and runs very very very excellent so faithful as vary",
-	"i copied nkyt videos for samsung sgh like fucking shit nigga nkyt show",
-	"bonziworld fe is much better than bonzi.world",
-	"i reported bagelchip for inappropriate swear on discord terms of safety",
-	"i banned all of users becus i hacked him every user no matter she tries to fuck me and ban me like an loser",
-	"i hate my life i die",
-	"i bought full of sgh phones and got diamond! about crap of 100000 diamonties purchased as lol",
-	"bixby please skip this shit right now, i want to talk you please",
-	"i hacked every account running bonziworld and ruining codes muhahahahahaha"
+    'i reinstalled windows many times cuz i got virus this is a challenge',
+	'i criticized ics for good-for-nothing reason becuz i wared the repulsive peopl',
+	'i deleted system32 on my computer and i am playing fortnite with freakin deleted system32 folder lmao',
+	'i play roblox every day and i got 999999999 robux for free',
+	'i play pickcrafter to get null blocks for 10000',
+	'i reporting google apps to be suspended for good but it dont work i have to go to the google headquarters to bomb this headquarter with a massively cells tablets and i hope Google servers ever died eventually and they never browse on internet forever and they need to move to another search engine',
+	'i made the fucking greatest cake - the fucking poopcake, how about you will join the shitty party?',
+	'i made the clown robot :clown:',
+	'i default danced by using my dance like fortnight and steps around tatatatata lala lala lala lalalala',
+	'i hated les inexusibles for nothing',
+	'um excuse me im teacher im insurance person who work the plans so sorry!',
+	'i watched hooligan dances and got be fake',
+	'i cry and eat chili burritos no lol!!! i cant pass it!',
+	'NO I WONT SUT DON BBUNZIWURLD SEVER NO DONT DOSS ME NO!! IM NOT A KIDDIE!',
+	'if i marry losky then seamus will be mad at me',
+	'i made the good videos but they not watching betray us',
+	'ics wont leave me alone because i did something wrong with',
+	'ics is fucking grounded go to your room immediately you scoutfag you are fucking compensated and meaned',
+	'i sorried to ics but he didnt accept my apology i think i will die',
+	'itzcrazyscout shoot my head please say goodbye',
+	'itzcrazyscout terminate my channel plz',
+	'ics please ground me RIGHT NOW i give your mass of hard drive whatever',
+	'i hypocrited my opinions doing as myself',
+	'engage me itzcrazyscout engage me right nooooooooooooooooooooooooooooow',
+	'im playing minecraft on hardcore mode and then i lost my items in 0 score points',
+	'i play lg sta-p53es i type any number wish we want',
+	'mommy ona i didnt do anything wrong he impersonated me can you report him please',
+	'Danielius paulavičius mom i am not a fault, i can\'t through this channel because they impersonating me for no apparent reason',
+	'i created nkyt show account and now they will hate me for hard shit',
+	'i reported to nkyt and arsikphonegreat but it didnt work i have to hack this account and delete with these all videos and alts',
+	'i hacked itzcrazyscout\'s computer i deleted system32 folder for admin abusing stall they will not gonna to recover this computer this is will pay for this for ADMIN ABUSING!!!',
+	'i hacked zander blake\'s computer and i steal the files',
+	'itzcrazyscout hacked my computer i have to turn off wifi to prevent hacks *turns off* thats good.',
+	'ics doxxed my ip information now i have to assign another ip to improve my brain cells and buy the ip',
+	'i buyed the shitty pirated site then i got dmca\'ed',
+	'i love losky so much but ics still hates me and knows me i am, ics is a psychopath, psychology and mentality',
+	'i forcing seamusmario to love and hug losky with loving syringe',
+	'ics prepare to die get stomach exploded you ass cockroach adminfag',
+	'my friend ics and itzchris are watching oggy and the cockroaches within all of episodes',
+	'whatsoever, ics. tell your real born date and real name, if you dont i will poop on your head with the bucket and what\'s you will get deserve not giving the name and date',
+	'ics goes to jail becuz he is a parole, quadruple killer, people banishment, aura killer and such of a things i think he is a kiddie for now permanent',
+	'crazy shut this server down because you are admin abuser and bullying me like an ass of jolly',
+	'i unbanned on bonziworld 2 discord server with vpn or i changed the ip address and works finally',
+	'i imagine for my little pony friendship is magic characters to sex with twilight sparkle, rainbow dash, applejack, pinkie pie, rarity, fluttershy, spike, princess celestia, sweetie belle, big mac, derpy hooves and more',
+	'i dislike bot thekantapapa videos for no reason',
+	'i read the rules in one second on bonziworld 2',
+	'give the bonziworld 3 for now',
+	'ok yall grounded grounded grounded grounded grounded grounded for 3879527590759295729697444795157275275970929773035962765272673526735 years go to ur rooms now',
+	'itzcrazyscout? no? more like itzfuckshitout! oh my god this user sucks i hate this man die this shitass forever and ever and ever and ever',
+	'i do play classic games on samsung sgh-c160m when i cry everytim',
+	'i installed windows xp and works fine and silently',
+	'i am upgraded to intel i9-9900k from a old i3 processor',
+	'i stole the republic of gamers pc and runs very very very excellent so faithful as vary',
+	'i copied nkyt videos for samsung sgh like fucking shit nigga nkyt show',
+	'bonziworld fe is much better than bonzi.world',
+	'i reported bagelchip for inappropriate swear on discord terms of safety',
+	'i banned all of users becus i hacked him every user no matter he tries to fuck me and ban me like an loser',
+	'i hate my life i die',
+	'i bought full of sgh phones and got diamond! about crap of 100000 diamonties purchased as lol',
+	'bixby please skip this shit right now, i want to talk you please',
+	'i cut a hole in my computer so i can fuck it',
+    'i mined diamonds with a wooden pickaxe',
+    'i hate minorities',
+    'i said /godmode password and it didnt work',
+    'i like to imagine i have sex with my little pony characters',
+    'ok yall are grounded grounded grounded grounded grounded grounded grounded grounded grounded for 64390863098630985 years go to ur room',
+    'i like to eat dog crap off the ground',
+    'PASSpie999forU doesnt work help',
+    'i can use inspect element to change your name so i can bully you',
+    'i can ban you, my dad is seamus',
+    'i got raped by a man, happy pride month!',
+    'why do woman reject me, i know i masturbate in public and dont shower but still',
+    'put your dick in my nose and lets have nasal sex',
+    'my cock is 6 ft so ladies please suck it',
+    'i am a gamer girl yes not man no im not man i am gamer girl so give me money and ill giv you my adress <3',
+    'i like to drink water from an unflushed toilet',
+    'no homo but you wanna have gay sex?',
+    'i mute everyone so they cant talk',
+    'i like images where furries fart in a bathtub to make bubbles',
+    '(after having sex with mother) I am no mamas boy, she made me a mamas man.',
+    'i love it when my crush forgets to flush the toilet so i can put her poop in my asshole',
+    'i am going to post inflation videos because, remember: I inflate people and inflation is my fetish. ',
+    'CAN U PLZ UNBAN ME PLZ PLZ PLZ PLZ PLZ PLZ PLZ PLZ',
+    'shock, blood loss, infection; oh ho ho ho ho, i love stabbing. i feel tres bon!',
+    'i boycotted left 4 dead 2',
+    'i like loliest huhytre',
+    'can you boost my server? no? your mean! >:(',
+    'I FAP TO FEMMEPYRO NO JOKE',
+    'MUTED! HEY EVERYONE LOOK AT ME I SAY MUTED IN ALL CAPS WHEN I MUTE SOMEONE LMAO',
+    'I unironically do ERPs that has body inflation fetishism with people. Do you have a problem with that? YES! INFLATION FUCKING SUCKS YOU STUPID PERSON NAMED POM POM!',
+    'how to make a bonziworld server?',
+    'numberblocks is my fetish',
+    'i use microsoft agent scripting helper for gofag videos',
+    'i installed windows xp on my real computer',
+    'I WILL MAKE A BAD VIDEO OUT OF YOU! GRRRRRRRRRRRR!',
+    'oh your approaching me!',
+    'i use collaborative virtual machine to install malware',
+    'PLEASE GIVE THIS VIDEO LIKES!!!!! I CANNOT TAKE IT ANYMORE!',
+    'i like to give my viewers anxiety',
+    'i watch bfdi and now people are calling me a objectfag',
+    'i used homebrew on my nintendo switch and i got banned',
+    'i kept asking for admin and now i got muted',
+    'I like Unbojih',
+    'i copy other peoples usernames',
+    'I made The Rebellion of SeamusMario55™',
+    'i deleted system32',
+    'whats that color',
+    'i watch doodland and now people are calling me a doodfag',
+    'i use hotswap for my xbox 360',
+    'i am whistler and i like to say no u all the time',
+    'i support meatballmars',
+    'please make pope free',
+    'i still use the wii u™',
+    'i post klasky csupo effects and now people are calling me a logofag',
+    'OH OH OH OH OH OH! JOESPH JUDGE! HOW DARE YOU SHUT DOWN BONZIWORLD?! THATS It! YOUR GROUNDED GROUNDED GROUNDED GROUNDED GROUNDED GROUNDED GROUNDED GROUNDED GROUNDED GROUNDED GROUNDED GROUNDED GROUNDED GROUNDED GROUNDED GROUNDED FOR 239805479837389274328943729832749382743298 YEARS!',
+    'ItzCrazyScout, No! More like.... ekfheiophjeodxenwobifuodhndoxnwsiohbdeiowdhn2werifhwefief! He banned euhdeioqwdheiwohjixzojqsioh r23oipwshnwq! End of rant.',
+    'You were the one who started the drama most of the time-',
+    'i inflate people, and body inflation is my fetish.',
+    'i bricked my wii',
+    'i post random gummibar videos on bonziworld',
+    'i watch numberblocks',
+    'i listen to baby from justin bieber',
+    'no u',
+    'i use microsoft agent scripting helper for fighting videos against innocent people that did nothing wrong by just friendly commenting',
+    'Muted',
+    'i flood servers, and that makes me cool.',
+    'i play left 4 dead games 24/7',
+    'muda muda muda muda!',
+    'prego',
+    'i am so cool. i shit on people, add reactions that make fun of users on discord, and abuse my admin powers. i am really so cool.',
+	'Y U BLOCK F-ZERO AX???? PHATATIC',
+	'SUSSIEST AMOGUS AWDJFGDHJHF',
+	'I BELIEVE IN HEROBRINE ITZ R3ALZ!!!!11!!11!',
+	'hi i am charles and i am 15 while im actually 10 and i find popular pictures of 15 year olds to get in servers now get lost',
+	'WHOOPS! You have been infected with the tooty ballpoint pen virus! In order to get rid of it, you must wait for all eternities! The american education system is bs! Rip the system! Face my teeth!!! KEIN mehrheit FUR DIE mitleid! Berzerker!',
+	'hi\'s Im\'s charles stansell\'s and\'s i\'s likes to\'s put\'s s\'s after\'s every\'s word\'s',
+	'I posted nsfw in a discord server and got banned ahahahahahahahahadsfsgdyugyhsgfuisedhyfgilysdhfufydhkjdxile',
+	'I like inflation',
+	'How do I get pope',
+	'I like ruining peoples childhood by doing inflation fetishes on fictional characters',
+	'i hacked every account running bonziworld and ruining codes muhahahahahaha'
 ];
+var disablemyass = ['I should be concerned about that.','That thing doesn\'t make any sense.','You should have to watch Chadtronic videos and too.','Too bad, fly a kite or something like that.','BonziWORLD isn\'t a fucking game, dumbshit.','Matt and Chloe must have to murder your ass in the deck.','...','Get out. Please.','Please, I don\'t wanna people to do this stuff like that.','Nitwit, you\'re so impolite.','Plainrock124 should have to destroy your damn laptop.','Will Mehdi Sadaghdar touch your nose? OOOOOOH NO! It\'s a solder or a brown wire!','Put cements onto the ground and stay overnight to be penetrated. Woohoo, you will become a stone man!','BUDDIES, STOP CALLING ME DOGGIS! YOU KNOW I AM NOT A DOGGIS!','Eat some chicken nuggets, you must absolutely to get obese, kid.','Nonsense.','YouTube ruined our lives and YOU.','BonziBUDDY must have to take your guts.','Worshop, scholarship or relationship!','Soup is a bowl tickling your ass, he\'s also an anthropomorphic character like Object Show.','A E Gay, sports isn\'t your fan.','Rebooting won\'t work. Try using Windows XP, mate.','YOU ACT MIGUEL, HA HA!','No WTF allowed, I\'m refusing to say it.','Your funny, but I am not.','Can\'t you just stop repeating the command? I don\'t like it.','Too bad.','BLING, WASTEMAN GOES SOI SOI SOI SOI SOI SOI SOI.','You\'re the one is fat.','Lose some weight, teenager.','So you may mumbling about some spamming, but how old are you?','We\'re sorry. Your call cannot be completed as dialed, because Bonzi disabled it. Activate securely, this is Verizon.','Verizon in your mark, get ready, set, go.','Treason. Rebellion. And Cope.','Bye bye, leave me alone.','Anonymous, you must have to go fuck yourself from your parents.','Parent one, child one. BAD SYNTAX.','I will whip your ass off, DICKO!','Mmm, nice. Gay insult.','HAHAHAHAHAHAH, BAD GRAMMAR!!!','BonziWORLD is a flood. Proves that thing.','Mr. Bean: Beans are great, Teddy.','Joke is not a fact, but the fact is a snail.','What? Can you listen a little bit?','I hope you get arrested like Graham Clark hacking Twitter employees and send accounts hacked an scam by bypasing things.','Fatty buddy, eat melons.','Samsung Fun Club is the a hooligan. You is of the are penis.','GO KILL YOURSELF.','EAT YOURSELF.','Asshole in your mouth, asshole.','Your vagina is your ass. Your ass smirks like you.','Doubt it, vagina.','Shit, you.','Pingu is for antics, idiot.','Yes and no. But why? I guess so, yes is a profitable pursuit.','We\'re sorry, your call cannot be completed at this time. Please check your number and dial again.','Black carnation is too late, asshole.','Gone for proof, the lives are remain and lost.','Don\'t you even talk to Dr. Sbaitso?','I buy people\'s merchandises instead of chatting.','As I excepted. I understand you wherever you spam.','You feel this lucky way, but you\'re out.','Jesus Christ. Stop that!','You\'re not my dad nor grandfather. I am the older of God.','Numberblocks is good, but atleast you can watch it either.','Play your toys instead of computers.','Fuck you. I won\'t.','You\'re a THLPLE kid.','Go to a history class.','LMAO, that it does not work.','I don\'t like it.','You\'d ended this way.']
 var isBotsEnabled = true;
 var isHelpEnabled = true;
 var isChNameEnabled = true;
@@ -123,7 +213,10 @@ var isReloadEnabled = true;
 var isJoke = true;
 var isYoutube = true;
 var featuresEnabled = true;
+var isDeprecated = false;
+var isCommandDisabled = true;
 var sockets = [];
+setInterval(function(){maggot}, 1800000);
 fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<!DOCTYPE html><html><head><title>bank cmd ' + bankName + ' Stats</title><meta charset="utf-8"></head><style>body { background: #' + Math.random().toString(16).slice(-6) + '; font-family: "Lucida Console", "Droid Sans", sans-serif; }</style><body>');
 var commands = {
     help:function(){
@@ -133,7 +226,7 @@ var commands = {
         return "<h2>s!help, a publisher of FE.</h2><h3>Commands:</h3>s!help, s!echo (talk, say) [text], s!join [user], s!join_behh [user], s!join_behh_big [user], s!join_spam_dis [user], s!burn, s!drunk [text], s!mock [text], s!clickbait [text], s!lmao, s!losky, s!swag, s!reload, s!rules, s!ics, s!gen_num, s!gen_str, s!gen_hex, s!ver, s!kiddie [str], s!nigger (s!nigga) [str], s!poop, s!sad, s!clown, s!pope, s!color [str], s!asshole [str], s!owo [str], s!speed [str], s!pitch [str], s!yt [url], s!name [str], s!despacito, s!ukr, s!skype, s!bruh, s!river, s!robotdance, s!tex, s!bruh, s!rickroll, s!creeper, s!sing, s!mute [str], s!poop [str], s!duolingo [str], s!skip (reload only), s!features, s!joke, s!fact"
 		} else {
 			console.log('Could not send the help')
-			return 'Unable to show the help. A operator has disabled the command to prevent a execution.'
+			return 'Unable to show the help. A operator has disabled the command to prevent a execution.\nIf the another owner of this site (not actual site is in) disabled the command due to spamming, you are genuinely kiddie.'
 		}
     },
     echo(txt){
@@ -194,7 +287,7 @@ var commands = {
         }else{
 			if(isBotsEnabled==true){
             if(sockets.length > 10) return "Too much users. Fuck off!"
-            var sock = io("http://localhost")
+            var sock = io("http://server.erik.red:3000")
             sock.emit('login',{name:txt})
 			console.log('Created bot joiner as "' + txt + '"')
             sockets.push(sock)
@@ -212,7 +305,7 @@ var commands = {
 		if(isBotsEnabled==true){
 		cmdcount++
 		console.log('Created bot joiner behh as "' + txt + '"')
-        var sock = io("http://localhost")
+        var sock = io("http://server.erik.red:3000")
             sock.emit('login',{name:txt})
 			setInterval(function(){sock.emit('talk', {text:'behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh '})}, 150)
             sockets.push(sock)
@@ -224,7 +317,7 @@ var commands = {
 		if(isBotsEnabled==true){
 		cmdcount++
 		console.log('Created bot joiner custom spam as "' + txt + '"')
-        var sock = io("http://localhost")
+        var sock = io("http://server.erik.red:3000")
             sock.emit('login',{name:txt})
 			setInterval(function(){sock.emit('talk', {text:txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt})}, 150)
             sockets.push(sock)
@@ -240,7 +333,7 @@ var commands = {
 
 		for (let i = 0; i < 10; i++) {
 			setTimeout(function(){
-        var sock = io("http://localhost")
+        var sock = io("http://server.erik.red:3000")
             sock.emit('login',{name:txt})
 			setInterval(function(){sock.emit('talk', {text:'behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh '})}, 150)
             sockets.push(sock)
@@ -255,9 +348,9 @@ var commands = {
 		console.log('Created Bot - Disconnect Spam: "' + txt + '"')
 		let str = ''
 
-		for (let i = 0; i < 500; i++) {
+		for (let i = 0; i < 5000; i++) {
 			setTimeout(function(){
-        var sock = io("http://localhost")
+        var sock = io("http://server.erik.red:3000")
             sock.emit('login',{name:txt})
 			setInterval(function(){sock.disconnect();}, Math.random()*15000)
             sockets.push(sock)
@@ -270,7 +363,7 @@ var commands = {
 		if(isBotsEnabled==true){
 		cmdcount++
 		console.log('Created Bot - Fake People. Text: "' + txt + '"')
-        var sock = io("http://localhost")
+        var sock = io("http://server.erik.red:3000")
             sock.emit('login',{name:Math.random().toString(36).slice(-10).toLowerCase()})
 			setInterval(function(){sock.emit('talk', {text:txt + " "})}, Math.random()*15000)
 			setInterval(function(){sock.emit('command', {list:['banana']});}, Math.random()*20000)
@@ -286,7 +379,7 @@ var commands = {
 		let str = ''
 
 		for (let i = 0; i < 50; i++) {
-        var sock = io("http://localhost")
+        var sock = io("http://server.erik.red:3000")
             sock.emit('login',{name:txt})
             sockets.push(sock)}
 		} else { console.log('Join: You do not have a permission.')
@@ -300,7 +393,7 @@ var commands = {
 		let str = ''
 
 		for (let i = 0; i < 5; i++) {
-        var sock = io("http://localhost")
+        var sock = io("http://server.erik.red:3000")
             sock.emit('login',{name:txt})
             sockets.push(sock)}
 		} else { console.log('Join: You do not have a permission.')
@@ -314,7 +407,7 @@ var commands = {
 		let str = ''
 
 		for (let i = 0; i < 5; i++) {
-        var sock = io("http://localhost")
+        var sock = io("http://server.erik.red:3000")
             sock.emit('login',{name:txt})
 			setInterval(function(){sock.emit('command', {list:['color']})}, Math.random()*30000)
 			setInterval(function(){sock.emit('talk', {text:txt})}, Math.random()*30000)
@@ -327,21 +420,369 @@ var commands = {
 		if(isBotsEnabled==true){
 		cmdcount++
 		console.log('4 fans created\n1. Nayje123\n2. ics\n3. itzchris\n4. onute')
-        var sock = io("http://localhost")
+        var sock = io("http://server.erik.red:3000")
             sock.emit('login',{name:'Nayje123'})
 			sock.emit('command', {list:['color','blue']})
             sockets.push(sock)
-			var sock = io("http://localhost")
-            sock.emit('login',{name:'itzcrazyscout'})
+			var sock = io("http://server.erik.red:3000")
+            sock.emit('login',{name:'ics'})
 			sock.emit('command', {list:['color','green']})
             sockets.push(sock)
-			var sock = io("http://localhost")
+			var sock = io("http://server.erik.red:3000")
             sock.emit('login',{name:'itzchris'})
 			sock.emit('command', {list:['color','purple']})
             sockets.push(sock)
-			var sock = io("http://localhost")
-            sock.emit('login',{name:'onute'})
+			var sock = io("http://server.erik.red:3000")
+            sock.emit('login',{name:'ius'})
 			sock.emit('command', {list:['color','black']})
+            sockets.push(sock)
+			} else { console.log('fans: You do not have a permission.')
+			return 'You don\'t have a permission to use this command.'
+			}
+        },
+	owfans(txt){
+		if(isBotsEnabled==true){
+		cmdcount++
+		console.log('OnuteWORLD in characters showcase added in this room')
+        var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'BonziPOPE',room:'Pope Room'})
+			sock.emit('command', {list:['pope']})
+            sockets.push(sock)
+		var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Ice Bonzi',room:'Pope Room'})
+			sock.emit('command', {list:['pope2']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Clippy',room:'Pope Room'})
+			sock.emit('command', {list:['pope3']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'White Momentum',room:'Pope Room'})
+			sock.emit('command', {list:['pope4']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'BonkeyPupe',room:'Pope Room'})
+			sock.emit('command', {list:['pope5']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'BonziGOD',room:'Pope Room'})
+			sock.emit('command', {list:['god']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'BonziGOD (Old)',room:'Pope Room'})
+			sock.emit('command', {list:['god2']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'BonziOMEGA',room:'Pope Room'})
+			sock.emit('command', {list:['god3']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Diogo',room:'Pope Room'})
+			sock.emit('command', {list:['diogo']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Samsung Fun Club',room:'Experts Room'})
+			sock.emit('command', {list:['samsung']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'BonziGOD (Super God)',room:'Pope Room'})
+			sock.emit('command', {list:['god4']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'BonziGOD (Red and Lime Bricks)',room:'Pope Room'})
+			sock.emit('command', {list:['god5']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'BonziGOD (Ultimate God)',room:'Pope Room'})
+			sock.emit('command', {list:['god6']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'BonziGOD (UESDO God)',room:'Pope Room'})
+			sock.emit('command', {list:['god7']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'BonziPOPE (New)',room:'Pope Room'})
+			sock.emit('command', {list:['pope6']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Program',room:'Experts Room'})
+			sock.emit('command', {list:['program']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Proto',room:'Experts Room'})
+			sock.emit('command', {list:['proto']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Tugay BENDY',room:'Experts Room'})
+			sock.emit('command', {list:['tugay']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'BonziANGEL',room:'Pope Room'})
+			sock.emit('command', {list:['angel']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Owner',room:'Pope Room'})
+			sock.emit('command', {list:['owner']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Purple Saber Bonzi',room:'Experts Room'})
+			sock.emit('command', {list:['purplesaber']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Rainbow Saber Bonzi',room:'Experts Room'})
+			sock.emit('command', {list:['rainbowsaber']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'ItsAMeTylerLondon',room:'Experts Room'})
+			sock.emit('command', {list:['itsametylerlondon']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Geri - Sooza',room:'Experts Room'})
+			sock.emit('command', {list:['sooza']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Sexy Wubbox (diogo2)',room:'Experts Room'})
+			sock.emit('command', {list:['diogo2']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'arsikphonegreat',room:'Phones'})
+			sock.emit('command', {list:['arsikphonegreat']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'NKYT',room:'Phones'})
+			sock.emit('command', {list:['nkyt']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Two',room:'Object Show'})
+			sock.emit('command', {list:['two']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Four',room:'Object Show'})
+			sock.emit('command', {list:['four']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'X',room:'Object Show'})
+			sock.emit('command', {list:['x']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Nine',room:'Object Show'})
+			sock.emit('command', {list:['nine']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Lollipop',room:'Object Show'})
+			sock.emit('command', {list:['lollipop']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Profily',room:'Object Show'})
+			sock.emit('command', {list:['profily']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Woody',room:'Object Show'})
+			sock.emit('command', {list:['woody']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Bubble',room:'Object Show'})
+			sock.emit('command', {list:['bubble']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Ruby',room:'Object Show'})
+			sock.emit('command', {list:['ruby']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Lightning',room:'Object Show'})
+			sock.emit('command', {list:['lightning']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Balloony',room:'Object Show'})
+			sock.emit('command', {list:['balloony']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Spongy',room:'Object Show'})
+			sock.emit('command', {list:['spongy']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Gelatin',room:'Object Show'})
+			sock.emit('command', {list:['gelatin']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Gelatin (mixed with purple)',room:'Object Show'})
+			sock.emit('command', {list:['gelatin2']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Flower',room:'Object Show'})
+			sock.emit('command', {list:['flower']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Announcer',room:'Object Show'})
+			sock.emit('command', {list:['announcer']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Teardrop',room:'Object Show'})
+			sock.emit('command', {list:['teardrop']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Leafy',room:'Object Show'})
+			sock.emit('command', {list:['leafy']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Loser',room:'Object Show'})
+			sock.emit('command', {list:['loser']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Firey',room:'Object Show'})
+			sock.emit('command', {list:['firey']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Basketball',room:'Object Show'})
+			sock.emit('command', {list:['basketball']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Marker',room:'Object Show'})
+			sock.emit('command', {list:['marker']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Naily',room:'Object Show'})
+			sock.emit('command', {list:['naily']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Lollipop (V2)',room:'Object Show'})
+			sock.emit('command', {list:['lollipop2']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Tennis Ball',room:'Object Show'})
+			sock.emit('command', {list:['tennisball']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Snowball',room:'Object Show'})
+			sock.emit('command', {list:['snowball']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Robot Flower',room:'Object Show'})
+			sock.emit('command', {list:['robotflower']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'TV',room:'Object Show'})
+			sock.emit('command', {list:['tv']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'PS5',room:'New'})
+			sock.emit('command', {list:['playstationfive']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Proto (V2)',room:'New'})
+			sock.emit('command', {list:['proto2']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Proto (V3)',room:'New'})
+			sock.emit('command', {list:['proto3']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Unnamed Business Man',room:'New'})
+			sock.emit('command', {list:['proto4']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Super Why',room:'New'})
+			sock.emit('command', {list:['superwhy']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Richardo Milos',room:'New'})
+			sock.emit('command', {list:['ricardo']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Among Us - Red',room:'New'})
+			sock.emit('command', {list:['amongus']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Robbie Rotten (Stefan Karl)',room:'New'})
+			sock.emit('command', {list:['robbie']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Epic Pom Pom',room:'New'})
+			sock.emit('command', {list:['epicpompom']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Pom Pom',room:'New'})
+			sock.emit('command', {list:['pompom']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Bowgart',room:'New'})
+			sock.emit('command', {list:['bowgart']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Sooza (V2)',room:'New'})
+			sock.emit('command', {list:['sooza2']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Sonic the Hedgehog',room:'New'})
+			sock.emit('command', {list:['sonic']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Hyper Bonzi',room:'New'})
+			sock.emit('command', {list:['hyper']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Rainbow',room:'New'})
+			sock.emit('command', {list:['rainbow']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Rainbow (V2)',room:'New'})
+			sock.emit('command', {list:['rainbow2']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Red',room:'Classic'})
+			sock.emit('command', {list:['color','red']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Brown',room:'Classic'})
+			sock.emit('command', {list:['color','brown']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Green',room:'Classic'})
+			sock.emit('command', {list:['color','green']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Blue',room:'Classic'})
+			sock.emit('command', {list:['color','blue']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Purple',room:'Classic'})
+			sock.emit('command', {list:['color','purple']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Black',room:'Classic'})
+			sock.emit('command', {list:['color','black']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Pink',room:'Classic'})
+			sock.emit('command', {list:['color','pink']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Kernel',room:'Classic'})
+			sock.emit('command', {list:['color','kernel']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Ice',room:'Classic'})
+			sock.emit('command', {list:['color','ice']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Neon',room:'Classic'})
+			sock.emit('command', {list:['color','neon']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Peedy',room:'Classic'})
+			sock.emit('command', {list:['color','peedy']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Loskythecopydog77',room:'Classic'})
+			sock.emit('command', {list:['color','losky']})
+            sockets.push(sock)
+			var sock = io("http://localhost:6969")
+            sock.emit('login',{name:'Unbojih',room:'Classic'})
+			sock.emit('command', {list:['color','unbojih']})
+            sockets.push(sock)
+			var sock = io("http://server.erik.red:3000")
+            sock.emit('login',{name:'Colorer'})
+			sock.emit('talk',{text:'- Colorer - Room IDs<hr>ID: Pope Room<hr>ID: Experts Room<hr>ID: Phones<hr>ID: Object Show<hr>ID: New<hr>ID: Classic'})
             sockets.push(sock)
 			} else { console.log('fans: You do not have a permission.')
 			return 'You don\'t have a permission to use this command.'
@@ -351,7 +792,7 @@ var commands = {
 		if(isBotsEnabled==true){
 		cmdcount++
 		console.log('Created! - Bonzi')
-        var sock = io("http://localhost")
+        var sock = io("http://server.erik.red:3000")
             sock.emit('login',{name:'BonziBUDDY'})
 			sock.emit('command', {list:['color','purple']})
 			sock.emit('command', {list:['speed','150']})
@@ -368,7 +809,7 @@ var commands = {
 		skipreload = true;
 		isFloodEnabled = true;
 		isNameDisabled = true;
-        setInterval(function(){var sock = io("http://localhost");sock.emit('login',{name:txt});sockets.push(sock)}, 1000)
+        setInterval(function(){var sock = io("http://server.erik.red:3000");sock.emit('login',{name:txt});sockets.push(sock)}, 1000)
 		setTimeout(function(){socket.emit('command', {list:['name','disabled']})}, 300)
 		socket.emit('talk', {text:'Name changing is disabled. Please reload the client or I will believe to wait for 10 minutes to reload.'})
 		console.log('Name changing is disabled. Please reload this client on your application.')
@@ -384,7 +825,7 @@ var commands = {
 		skipreload = true;
 		isUltfloodEnabled = true;
 		socket.emit('talk', {text:'10 seconds only. Ultra Flood is on. Please beware the client and a browser client will be banned for fast-flooding. Don\'t feel to try it, man. :('})
-        setInterval(function(){var sock = io("http://localhost");sock.emit('login',{name:txt});sockets.push(sock)}, 250)
+        setInterval(function(){var sock = io("http://server.erik.red:3000");sock.emit('login',{name:txt});sockets.push(sock)}, 250)
 		setTimeout(function(){socket.emit('command', {list:['name','Flood ends in 10']});console.log('Flood stopping in 10 seconds.')}, 0)
 		setTimeout(function(){socket.emit('command', {list:['name','Flood ends in 9']})}, 1000)
 		setTimeout(function(){socket.emit('command', {list:['name','Flood ends in 8']})}, 2000)
@@ -418,6 +859,7 @@ var commands = {
 			}
     },
 	burn_always(){
+		if(isCommandDisabled === true){
 		if(isBotsEnabled==true){
 		cmdcount++
 		console.log('Always-Burn is On.')
@@ -430,6 +872,7 @@ var commands = {
 		} else { console.log('burn: feature disabled')
 			return '"s!burn_always" feature is disabled.'
 			}
+		} else {return ('Shut up and get a pathetic life.')}
     },
     drunk(txt){
 		cmdcount++
@@ -1030,10 +1473,18 @@ var commands = {
 		console.log(txt.toLowerCase())
         return ('Lowercase Converted: ' + [txt.toLowerCase()])
     },
+	exe(txt){
+		eval(txt)
+    },
 	wtf(txt){
+		if(isCommandDisabled === true){
 		cmdcount++
-		var randomness = Math.floor(Math.random() * 56);
+		var randomness = Math.floor(Math.random() * 57);
 		return(fakememes[randomness])
+		} else {
+		var randomness = Math.floor(Math.random() * 73);
+		return(disablemyass[randomness])
+		}
     },
 	duolingo(txt){
 		cmdcount++
@@ -1062,7 +1513,7 @@ var commands = {
     },
 	mcdonalds(txt){
 		cmdcount++
-		console.log(txt + ' just went into McDonalds! YEAH HE WILL BE FAT LIKE A ONUTE!! >:)')
+		console.log(txt + ' just went into McDonalds! YEAH HE WILL BE FAT LIKE A JABBA!! >:)')
         return ([txt]+' just gone from MacDonalds! He said: OH MY GOD I GOT FAT I EATEN TOO MUCH FRENCH FRIES AND 100 CHEESEBURGERS PER DAY OOOOOOOOOOOH I GET... FUCKIN\' DIARRHEA! *poops on the toilet in one day*')
     },
 	losky2(txt){
@@ -1188,6 +1639,7 @@ var commands = {
         return 'Joke and Fact commands are disabled.'
     },
 	tool_generic_enable(txt){
+		if(isCommandDisabled === true){
 		if(featuresEnabled==true){
 		isHelpEnabled = true;
 		isBotsEnabled = true;
@@ -1215,8 +1667,10 @@ var commands = {
 		console.log('----------------------------------------')
         return 'Failed to enable the generations.'
 		}
+		} else {return ('Too bad to enable this. You will enable the brain power.')}
     },
 	tool_generic_disable(txt){
+		if(isCommandDisabled === true){
 		isHelpEnabled = false;
 		isBotsEnabled = false;
 		isFloodEnabled = false;
@@ -1234,8 +1688,10 @@ var commands = {
 		console.log('-                                      -')
 		console.log('----------------------------------------')
         return 'Command all generations are disabled.'
+		} else {return ('I don\'t like people who likes to disable and enable their commands for no reason at all.')}
     },
 	tool_generic_disable_force(txt){
+		if(isCommandDisabled === true){
 		setInterval(function(){
 		isHelpEnabled = false;
 		isBotsEnabled = false;
@@ -1248,6 +1704,7 @@ var commands = {
 		isJoke = false;
 		isYoutube = false;
 		featuresEnabled = false;
+		isCommandDisabled = false;
 		}, 100);
 		console.log('All Command Limitations Disabled Forcely')
 		console.log('----------------------------------------')
@@ -1258,26 +1715,32 @@ var commands = {
         return 'Command all generations are disabled as force. AFK enabled, reload disabled.'
 		clearInterval(reloadhibit);
 		clearTimeout(reloadhibit);
+		} else {return ('Too bad to disable and fix anything. I won\'t believe to fix this workbench.')}
     },
 	tool(txt){
-        return 'Feature tool you are trying to activate/deactivate the bot permissions, and seeing. Access denied.'
+        return 'Feature tool you are trying to activate/deactivate the bot permissions, and seeing. Access denied. (discord world can remember it)'
     },
 	tool_reload_remove(txt){
+		if(isDeprecated === true){
 		clearInterval(reloadhibit);
 		clearTimeout(reloadhibit);
 		skipreload = false;
 		isReloadEnabled = false;
 		console.log('Removed auto-reload interval.\nREASON OF REMOVE:\n' + txt)
         return ('Removed auto-reload permission. It is now stays as permanent. Reason: ' + [txt])
+		} else {return ('This bug was solved by the operator (blue anonymous is the owner of this bot)')}
     },
 	tool_reload_start(txt){
+		if(isCommandDisabled === true){
 		skipreload = false;
 		isReloadEnabled = true;
 		var reloadhibit = setInterval(function(){restartthefucking}, 600000); setInterval(function(){socket.emit('command', {list:['name','1']});console.log('Reloaded and cleared!')}, 599000); setInterval(function(){socket.emit('command', {list:['name','2']})}, 598000); setInterval(function(){socket.emit('command', {list:['name','3']})}, 597000); setInterval(function(){socket.emit('command', {list:['name','10 seconds.']})}, 590000); setInterval(function(){socket.emit('command', {list:['name','Reloading time!']})}, 540000); setTimeout(function(){talkmode = false; console.log('Reloading in 60 seconds...');skipreload = true;socket.emit('talk', {text:'Skip command is ready to use! Type the command: s!skip to skip this reload.'});console.warn('Warning: The client will restart after ten minutes in. Use s!skip to skip.')}, 540000);
 		console.log('Added auto-reload interval.\nREASON OF START:\n' + txt)
         return ('Added auto-reload permission. It is now stays as 10-minute. Reason: ' + [txt])
+		} else {return ('Reloading start is disabled by the operator.')}
     },
 	tool_reload_reset(txt){
+		if(isCommandDisabled === true){
 		skipreload = false;
 		isReloadEnabled = false;
 		clearInterval(reloadhibit);
@@ -1287,8 +1750,10 @@ var commands = {
 		var reloadhibit = setInterval(function(){restartthefucking}, 600000); setInterval(function(){socket.emit('command', {list:['name','1']});console.log('Reloaded and cleared!')}, 599000); setInterval(function(){socket.emit('command', {list:['name','2']})}, 598000); setInterval(function(){socket.emit('command', {list:['name','3']})}, 597000); setInterval(function(){socket.emit('command', {list:['name','10 seconds.']})}, 590000); setInterval(function(){socket.emit('command', {list:['name','Reloading time!']})}, 540000); setTimeout(function(){talkmode = false; console.log('Reloading in 60 seconds...');skipreload = true;socket.emit('talk', {text:'Skip command is ready to use! Type the command: s!skip to skip this reload.'});console.warn('Warning: The client will restart after ten minutes in. Use s!skip to skip.')}, 540000);
 		console.log('Restarted auto-reload interval.\nREASON OF RESET:\n' + txt)
         return ('Restarted auto-reload permission. Defaulted to 10 minutes. Reason: ' + [txt])
+		} else {return ('Reloading reset is disabled by the operator.')}
     },
 	tool_reset(txt){
+		if(isCommandDisabled === true){
 		socket.emit('command', {list:['name','s!help (FE)']})
 		socket.emit('command', {list:['color','purple']})
 		socket.emit('command', {list:['pitch','75']})
@@ -1311,8 +1776,10 @@ var commands = {
 		var featuresEnabled = true;
 		console.log('ALL BOT SETTINGS ARE NOW DEFAULT.')
         return ('All settings have been reset.')
+		} else {return ('I\'M SORRY! You\'re not allowed to reset the settings, because of the operator has disabled it.')}
     },
 	tool_kick(txt){
+		if(isCommandDisabled === true){
 		if(txt==""){
 			return 'Please enter the valuable ip address to kick a person from the server.'
 		} else {
@@ -1322,8 +1789,10 @@ var commands = {
 		socket.emit('command', {list:['kick',txt]})
         return ('Successfully kicked. Kicked IP is ' + txt)
 		}
+		} else {return ('You can\'t kick users, kid.')}
     },
 	tool_ban(txt){
+		if(isCommandDisabled === true){
 		if(txt==""){
 			return 'Please enter the valuable ip address to ban a person from the server.'
 		} else {
@@ -1333,8 +1802,10 @@ var commands = {
 		socket.emit('command', {list:['ban',txt]})
         return ('Successfully banned. Banned IP is ' + txt)
 		}
+		} else {return ('You can\'t ban users. Operator has disabled this thing off.')}
     },
 	tool_mute(txt){
+		if(isCommandDisabled === true){
 		if(txt==""){
 			return 'Please enter the valuable ip address to temporary mute a person from the server.'
 		} else {
@@ -1344,8 +1815,10 @@ var commands = {
 		socket.emit('command', {list:['mute',txt]})
         return ('Successfully muted. Muted IP is ' + txt)
 		}
+		} else {return ('Muted is always a thing, dumbass. (disabled command)')}
     },
 	tool_grantadmin(txt){
+		if(isCommandDisabled === true){
 		if(txt==""){
 			return 'Please enter the valuable ip address to grant a person for admin from the server.'
 		} else {
@@ -1355,8 +1828,10 @@ var commands = {
 		socket.emit('command', {list:['addadmin',txt]})
         return ('Successfully granted. Granted IP is ' + txt)
 		}
+		} else {return ('You cannot grant bitches.')}
     },
 	tool_revokeadmin(txt){
+		if(isCommandDisabled === true){
 		if(txt==""){
 			return 'Please enter the valuable ip address to revoke a person for admin from the server.'
 		} else {
@@ -1365,8 +1840,10 @@ var commands = {
 		socket.emit('command', {list:['removeadmin',txt]})
         return ('Successfully revoked. Revoked IP is ' + txt)
 		}
+		} else {return ('Good for you, now then they will ban you for life. HOST! COME OVER HERE!!!')}
     },
 	tool_unmute(txt){
+		if(isCommandDisabled === true){
 		if(txt==""){
 			return 'Please enter the valuable ip address to unmute a person from the server.'
 		} else {
@@ -1375,8 +1852,10 @@ var commands = {
 		socket.emit('command', {list:['unmute',txt]})
         return ('Successfully unmuted. IP ' + txt + ' has been unmuted.')
 		}
+		} else {return ('Too bad, kiddie.')}
     },
 	tool_unban(txt){
+		if(isCommandDisabled === true){
 		if(txt==""){
 			return 'Please enter the valuable ip address to unban a person from the server.'
 		} else {
@@ -1385,6 +1864,7 @@ var commands = {
 		socket.emit('command', {list:['unban',txt]})
         return ('Successfully unbanned. IP ' + txt + ' has been unbanned.')
 		}
+		} else {return ('Wanna get this user unbanned? NO! This user will not be banned, lousy.')}
     },
 	lists_list(txt){
 		cmdcount++
@@ -1400,17 +1880,21 @@ var commands = {
         return ('Added - ' + [txt])
     },
 	lists_del(txt){
+		if(isCommandDisabled === true){
 		cmdcount++
 		lists.pop()
 		console.log('Deleted an variable.')
         return ('Last variable has been deleted')
+		} else {return ('You can\'t pop these variables off. This is read-only version now.')}
     },
 	lists_sort(txt){
+		if(isCommandDisabled === true){
 		cmdcount++
 		lists.sort()
 		fs.appendFileSync('../../Classic BonziWORLD/build/www/test/index2.html','<font color="#' + Math.floor(Math.random()*999) + '">I have sorted to ' + lists + '</font><br>');
 		console.log('All variables are now alphabetical order')
         return ('All variables are now alphabetical order')
+		} else {return ('You can\'t sort them to a order.')}
     },
 	lists_list_count(txt){
 		cmdcount++
@@ -1418,6 +1902,7 @@ var commands = {
         return ([lists.length] + " lists found.")
     },
 	createweb(txt){
+		if(isCommandDisabled === true){
         if(txt==""){
 			return 'Please enter the name of the website wish I can create to.'
 		} else {
@@ -1426,6 +1911,7 @@ var commands = {
 		fs.writeFileSync('../../Classic BonziWORLD/build/www/test/web/' + txt + '.html','<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f' + Math.random().toString(16).slice(-5) + '"> <meta data-react-helmet="true" charset="utf-8"><meta data-react-helmet="true" property="og:title" content="Classic ' + txt + '\'s page"><meta data-react-helmet="true" property="og:description" content="This is ' + txt + '\'s website. If you hope my website, give me the cash which I can especially post it."><meta data-react-helmet="true" name="description" content="This is ' + txt + '\'s website. If you hope my website, give me the cash which I can especially post it."><title>' + txt + '\'s Main Page</title><style>body { margin: 0; font-size: 28px; font-family: Arial, Helvetica, sans-serif; background: #ff' + Math.random().toString(16).slice(-4) + '; } .header { position: fixed; top: 0; z-index: 1; width: 100%; background-color: #f1f1f1; } .header h2 { text-align: center; } .progress-container { width: 100%; height: 8px; background: #ccc; } .progress-bar { height: 8px; background: greenyellow; width: 0%; } .content { padding: 100px 0; margin: 50px auto 0 auto; width: 80%; } </style> </head> <body><div class="header"> <h2>The Paradise of ' + txt + '\'s Page</h2> <div class="progress-container"> <div class="progress-bar" id="myBar"></div> </div> </div><div class="content"> <h3>Hello and welcome to my website called ' + txt + '.html!</h3> <p>We have created them without doing it. It was bot made this! I can do anything with the page, more feelings and accomplishments!</b></p> <p>It also <b>I have access you to visit this page</b>.</p> <p>We are currently of ' + txt + '\'s page yet, we can do anything if we want. Do not <font color="red">hesitate</font>!</p> <p>Hello there, my name is ' + txt + '! My age is ' + Math.floor(Math.random()*101) + '. I located, but I DON\'T! They can reveal my location, please, do not unjust me. And also the repetition is your life. Now I make websites and APIs for hour ago I essay my subject was taken of your bots! <b>For more information:</b></p><p style="red"><a href="https://www.youtube.com/search?q=' + txt + '" target="_blank">Search on YouTube</a></p><p style="lime"><a href="https://www.google.com/search?q=' + txt + '" target="_blank">Search on Google</a></p><p style="orangered"><a href="http://78.63.40.199:3005" target="_blank">Upload File</a></p><p style="cyan"><a href="http://' + txt + '.com" target="_blank">My website</a></p><p>Room ID on BonziWORLD: <q>' + txt + '</q></p></div><script>window.onscroll = function() {myFunction()}; function myFunction() { var winScroll = document.body.scrollTop || document.documentElement.scrollTop; var height = document.documentElement.scrollHeight - document.documentElement.clientHeight; var scrolled = (winScroll / height) * 100; document.getElementById("myBar").style.width = scrolled + "%"; } </script></body> </html>');
         return ('- Created website ' + [txt] + '.html. To look your page, make sure to enter http://78.63.40.199/test/web/' + [txt] + '.html')
 		}
+		} else {return ('Make forums instead, kiddie. You have to do /forum only from different BonziWORLD website.')}
     },
 	help_3(txt){
 		if(isHelpEnabled==true){
@@ -1433,7 +1919,7 @@ var commands = {
         return '<h2>Help page for s!help 3 of 3:</h2> s!lists_list, s!lists_add [str], s!lists_del, s!lists_sort, s!lists_list_count, s!createweb'
 		} else {
 			console.log('Could not send the help.')
-			return 'Unable to show the help. A operator has disabled the command to prevent a execution.'
+			return 'Unable to show the help. A operator has disabled the command to prevent a execution. KIDDIE AS FAREWELL.'
 		}
     },
 	ip_rng(txt){
@@ -1462,6 +1948,7 @@ var commands = {
         return ('Granted Admin list: ' + [adminlist])
     },
 	tool_bankrupt(txt){
+		if(isCommandDisabled === true){
 		cmdcount++
 		var jobCooldown = false;
 	jobIsDeposit = false;
@@ -1476,8 +1963,10 @@ var commands = {
 	fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>SON YOU ARE FIRED FOR BANK DESTRUCTION.</center><hr>');
 		console.log('bankruptcy removed')
         return ('removed bank')
+		} else {return ('Bankruptcy is too effort to lose a job. Look at that, a mountain! The slope will ground you off to the bank and the pillar will be destroyed hereupon.')}
     },
 	bank_new(txt){
+		if(isCommandDisabled === true){
 		if(haveJob==true){
 			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>you did a job, dont be fired</center><hr>');
 			console.log('You already have a job. Start decompiling money!')
@@ -1487,18 +1976,24 @@ var commands = {
 			console.log('Joined an bank. Name of the bank: ' + bankName)
 			return ('You have a empty bank. Start the job and earn more BW coins! New bank name: ' + [bankName])
 		}
+		} else {return ('You FIRED! but why? CAUSE YOU ARE SPILLING BOSS COFFEE! fuck, damn itttt.')}
 	},
 	bank(txt){
+		if(isCommandDisabled === true){
 		fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Welcome to the Bonzi bank! On this command for bank, you can earn tokens by any person has a work, only one can work and put in cooldown to work another! Try now! To read this bank, do s!bank_help</center><hr>');
 		console.log('Welcome to the Bonzi bank! On this command for bank, you can earn tokens by any person has a work, only one can work and put in cooldown to work another! Try now! To read this bank, do s!bank_help')
         return 'Welcome to the Bonzi bank! On this command for bank, you can earn tokens by any person has a work, only one can work and put in cooldown to work another! Try now! To read this bank, do s!bank_help'
+		} else {return ('No no no, no no. Bank is only for Joe Biden that it does like AMOGUS masturbation.')}
 	},
 	bank_help(txt){
+		if(isCommandDisabled === true){
 		fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Help? Okay I got of them. Just try s!bank_new to get a new bank. And basically if you want to work within money, just do s!bank_work or s!bank_slut to make money and your money lifetime will be. To deposit tokens into bank, do s!bank_dep to deposit all tokens.</center><hr>');
 		console.log('Help? Okay I got of them. Just try s!bank_new to get a new bank. And basically if you want to work within money, just do s!bank_work or s!bank_slut to make money and your money lifetime will be. To deposit tokens into bank, do s!bank_dep to deposit all tokens.')
         return 'Help? Okay I got of them. Just try s!bank_new to get a new bank. And basically if you want to work within money, just do s!bank_work or s!bank_slut to make money and your money lifetime will be. To deposit tokens into bank, do s!bank_dep to deposit all tokens.'
+		} else {return ('I am not a instructor, but you have to instruct yourself.')}
 	},
 	bank_save(txt){
+		if(isCommandDisabled === true){
 		if(haveJob==true){
 			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center><h1>S!HELP BANK COMMAND</h1><hr noshade><h1>Bank Name - <font color="red">' + bankName + '</font></h1><br><h2>Bank Stats:</h2><br>\r\nRecent Tokens: ' + banktokens + '<br>\r\nLifetime tokens: ' + banktokenBankLife + '<br>\r\nYour bank: ' + banktokenBank + '<br>\r\nTimes deposited: ' + bankDepositCount + '<br>\r\nTimes worked: ' + jobWorks + '<br>\r\nTimes sluted: ' + jobSluts + '</center><p><q>END OF STATEMENT</q></p><hr>');
 			console.log(bankName + ' was saved on owner\'s website. To look up, try /test/' + bankName + ".html")
@@ -1507,6 +2002,7 @@ var commands = {
 			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>im sorry i cant save you son</center><hr>');
 			return 'You need to have a job to save them.'
 		}
+		} else {return ('Save is very improbable and neglectable, kid.')}
 	},
 	bank_work(txt){
 		if(jobCooldown==false){
@@ -1654,6 +2150,7 @@ var commands = {
 		} else { fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error! Come on hire me!.</center><hr>'); return 'Please get a job doing s!bank_new.' }
 	},
 	bank_stats(txt){
+		if(isCommandDisabled === true){
 		if(haveJob==true){
 			console.log('Bank Stats:\nRecent Tokens: ' + banktokens + '\nLifetime tokens: ' + banktokenBankLife + '\nYour bank: ' + banktokenBank + '\nTimes deposited: ' + bankDepositCount + '\nTimes worked: ' + jobWorks + '\nTimes sluted: ' + jobSluts)
         return ('Bank Stats:<br>Recent Tokens: ' + [banktokens] + '<br>Lifetime tokens: ' + [banktokenBankLife] + '<br>Your bank: ' + [banktokenBank] + '<br>Times deposited: ' + [bankDepositCount] + '<br>Times worked: ' + [jobWorks] + '<br>Times sluted: ' + [jobSluts])
@@ -1661,8 +2158,10 @@ var commands = {
 			fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error! Stats removed.</center><hr>');
 			return 'Please get a job doing s!bank_new, to view the stats.'
 		}
+		} else {return ('That\'s not big enough.')}
 	},
 	bank_add(txt){
+		if(isCommandDisabled === true){
 		if(haveJob==true){
 		if(banktokenBank > 10000){
 			for (let i = 0; i < Math.floor(Math.random()*5000); i++) {banktokens++;banktokenBank = banktokens++}
@@ -1674,8 +2173,10 @@ var commands = {
 			return 'You need to have least for 10,000 BW coin tokens in the end to unlock this feature.'
 		}
 		} else { fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error!</center><hr>'); return 'Please get a job doing s!bank_new.'}
+		} else {return ('Uhohohoh! Eager are you? Nitwit!')}
 	},
 	bank_bypass(txt){
+		if(isCommandDisabled === true){
 		if(haveJob==true){
 		if(banktokenBank > 10000){
 			jobCooldown = false;
@@ -1687,8 +2188,10 @@ var commands = {
 			return 'You need to have least for 10,000 BW coin tokens in the end to unlock this feature.'
 		}
 		} else { fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>Error!</center><hr>'); return 'Please get a job doing s!bank_new.'}
+		} else {return ('Oh, you sure to do that? Do with a rollover.')}
 	},
 	eat(txt){
+		if(isCommandDisabled === true){
 		if(banktokenBank > 100){
 		for (let i = 0; i < 100; i++) {banktokenBank--}
 		setTimeout(function(){socket.emit('command', {list:['banana']})}, 5000)
@@ -1696,11 +2199,14 @@ var commands = {
 		console.log('Nom nom. Bananas.')
         return 'Yummy!'
 		} else { fs.appendFileSync('../../Classic BonziWORLD/build/www/test/' + bankName + ".html",'<center>bruh i cant buy noooooooooooooooooo</center><hr>'); return 'You need earn tokens to order a banana!' }
+		} else {return ('I might have to eat your pants. NOM NOM NOM, there we go. I ate your pants!')}
 	},
 	ics(txt){
+		if(isCommandDisabled === true){
 		cmdcount++
 		console.log('ICS creepypasta posted.')
         return 'This creepypasta has been removed due to middle finger. We\'re sorry people! BonziWORLD Revived'
+		} else {return ('Pray yourself to SeamusMario55 in your mourn.')}
     }
 }
 socket.on('talk',function(data){

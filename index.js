@@ -8,15 +8,15 @@ console.log('(-|                                |-)')
 console.log('(-|            ENTERING...         |-)')
 console.log('(-|                                |-)')
 console.log('(-|--------------------------------|-)')
-var socket = io("http://localhost:3000")
-socket.emit('login',{name:'s!help (FE)'})
+var socket = io("http://localhost")
+socket.emit('login',{name:'z!help (FE)'})
 socket.on('reconnected',reconnected)
 var reconnected = function(){
-    var socket = io("http://localhost:3000")
-    socket.emit('login',{name:'s!help (FE)'})
+    var socket = io("http://localhost")
+    socket.emit('login',{name:'z!help (FE)'})
     socket.on('talk',function(data){
         var text = data.text
-        if(text.startsWith('s!')){
+        if(text.startsWith('z!')){
             text = text.slice(2)
             var cmd = text.split(' ')[0]
             var oth = text.slice(cmd.length+1)
@@ -30,7 +30,7 @@ var reconnected = function(){
     })
     socket.on('reconnected',reconnected)
 }
-var reloadhibit = setInterval(function(){restartthefucking}, 600000); setInterval(function(){socket.emit('command', {list:['name','1']});console.log('Reloaded and cleared!')}, 599000); setInterval(function(){socket.emit('command', {list:['name','2']})}, 598000); setInterval(function(){socket.emit('command', {list:['name','3']})}, 597000); setInterval(function(){socket.emit('command', {list:['name','10 seconds.']})}, 590000); setInterval(function(){socket.emit('command', {list:['name','Reloading time!']})}, 540000); setTimeout(function(){talkmode = false; console.log('Reloading in 60 seconds...');skipreload = true;socket.emit('talk', {text:'Skip command is ready to use! Type the command: s!skip to skip this reload.'});console.warn('Warning: The client will restart after ten minutes in. Use s!skip to skip.')}, 1440000);
+var reloadhibit = setInterval(function(){restartthefucking}, 600000); setInterval(function(){socket.emit('command', {list:['name','1']});console.log('Reloaded and cleared!')}, 599000); setInterval(function(){socket.emit('command', {list:['name','2']})}, 598000); setInterval(function(){socket.emit('command', {list:['name','3']})}, 597000); setInterval(function(){socket.emit('command', {list:['name','10 seconds.']})}, 590000); setInterval(function(){socket.emit('command', {list:['name','Reloading time!']})}, 540000); setTimeout(function(){talkmode = false; console.log('Reloading in 60 seconds...');skipreload = true;socket.emit('talk', {text:'Skip command is ready to use! Type the command: z!skip to skip this reload.'});console.warn('Warning: The client will restart after ten minutes in. Use z!skip to skip.')}, 1440000);
 	socket.emit('command', {list:['color','purple']})
 	socket.emit('command', {list:['pope']})
 	socket.emit('command', {list:['pitch','75']})
@@ -132,14 +132,14 @@ var commands = {
 		if(isHelpEnabled==true){
 		console.log('Sent an help')
 		cmdcount++
-        return "<h2>s!help, a publisher of FE.</h2><h3>Commands:</h3>s!help, s!echo (talk, say) [text], s!join [user], s!join_behh [user], s!join_behh_big [user], s!join_spam_dis [user], s!burn, s!drunk [text], s!mock [text], s!clickbait [text], s!lmao, s!losky, s!swag, s!reload, s!rules, s!ics, s!gen_num, s!gen_str, s!gen_hex, s!ver, s!kiddie [str], s!nigger (s!nigga) [str], s!poop, s!sad, s!clown, s!pope, s!color [str], s!asshole [str], s!owo [str], s!speed [str], s!pitch [str], s!yt [url], s!name [str], s!despacito, s!ukr, s!skype, s!bruh, s!river, s!robotdance, s!tex, s!bruh, s!rickroll, s!creeper, s!sing, s!mute [str], s!poop [str], s!duolingo [str], s!skip (reload only), s!features, s!joke, s!fact"
+        return "<h2>z!help, a publisher of FE.</h2><h3>Commands:</h3>z!help, z!echo (talk, say) [text], z!join [user], z!join_behh [user], z!join_behh_big [user], z!join_spam_dis [user], z!burn, z!drunk [text], z!mock [text], z!clickbait [text], z!lmao, z!losky, z!swag, z!reload, z!rules, z!ics, z!gen_num, z!gen_str, z!gen_hex, z!ver, z!kiddie [str], z!nigger (z!nigga) [str], z!poop, z!sad, z!clown, z!pope, z!color [str], z!asshole [str], z!owo [str], z!speed [str], z!pitch [str], z!yt [url], z!name [str], z!despacito, z!ukr, z!skype, z!bruh, z!river, z!robotdance, z!tex, z!bruh, z!rickroll, z!creeper, z!sing, z!mute [str], z!poop [str], z!duolingo [str], z!skip (reload only), z!features, z!joke, z!fact"
 		} else {
 			console.log('Could not send the help')
 			return 'Unable to show the help. A operator has disabled the command to prevent a execution.'
 		}
     },
     echo(txt){
-        if(txt.startsWith('s!')){
+        if(txt.startsWith('z!')){
 			console.log('nice try')
 			cmdcount++
             return 'HEY EVERYONE LOOK AT ME I\'M TRYING TO SCREW WITH THE SERVER LMAO'
@@ -156,7 +156,7 @@ var commands = {
 		}
     },
 	say(txt){
-        if(txt.startsWith('s!')){
+        if(txt.startsWith('z!')){
 			console.log('nice try')
 			cmdcount++
             return 'HEY EVERYONE LOOK AT ME I\'M TRYING TO SCREW WITH THE SERVER LMAO'
@@ -173,7 +173,7 @@ var commands = {
 		}
     },
 	talk(txt){
-        if(txt.startsWith('s!')){
+        if(txt.startsWith('z!')){
 			cmdcount++
 			console.log('nice try')
             return 'HEY EVERYONE LOOK AT ME I\'M TRYING TO SCREW WITH THE SERVER LMAO'
@@ -196,7 +196,7 @@ var commands = {
         }else{
 			if(isBotsEnabled==true){
             if(sockets.length > 10) return "Too much users. Fuck off!"
-            var sock = io("http://localhost:3000")
+            var sock = io("http://localhost")
             sock.emit('login',{name:txt})
 			console.log('Created bot joiner as "' + txt + '"')
             sockets.push(sock)
@@ -214,7 +214,7 @@ var commands = {
 		if(isBotsEnabled==true){
 		cmdcount++
 		console.log('Created bot joiner behh as "' + txt + '"')
-        var sock = io("http://localhost:3000")
+        var sock = io("http://localhost")
             sock.emit('login',{name:txt})
 			setInterval(function(){sock.emit('talk', {text:'behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh '})}, 150)
             sockets.push(sock)
@@ -226,7 +226,7 @@ var commands = {
 		if(isBotsEnabled==true){
 		cmdcount++
 		console.log('Created bot joiner custom spam as "' + txt + '"')
-        var sock = io("http://localhost:3000")
+        var sock = io("http://localhost")
             sock.emit('login',{name:txt})
 			setInterval(function(){sock.emit('talk', {text:txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt + txt})}, 150)
             sockets.push(sock)
@@ -242,7 +242,7 @@ var commands = {
 
 		for (let i = 0; i < 10; i++) {
 			setTimeout(function(){
-        var sock = io("http://localhost:3000")
+        var sock = io("http://localhost")
             sock.emit('login',{name:txt})
 			setInterval(function(){sock.emit('talk', {text:'behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh behh '})}, 150)
             sockets.push(sock)
@@ -259,7 +259,7 @@ var commands = {
 
 		for (let i = 0; i < 500; i++) {
 			setTimeout(function(){
-        var sock = io("http://localhost:3000")
+        var sock = io("http://localhost")
             sock.emit('login',{name:txt})
 			setInterval(function(){sock.disconnect();}, Math.random()*15000)
             sockets.push(sock)
@@ -272,7 +272,7 @@ var commands = {
 		if(isBotsEnabled==true){
 		cmdcount++
 		console.log('Created Bot - Fake People. Text: "' + txt + '"')
-        var sock = io("http://localhost:3000")
+        var sock = io("http://localhost")
             sock.emit('login',{name:Math.random().toString(36).slice(-10).toLowerCase()})
 			setInterval(function(){sock.emit('talk', {text:txt + " "})}, Math.random()*15000)
 			setInterval(function(){sock.emit('command', {list:['banana']});}, Math.random()*20000)
@@ -288,7 +288,7 @@ var commands = {
 		let str = ''
 
 		for (let i = 0; i < 50; i++) {
-        var sock = io("http://localhost:3000")
+        var sock = io("http://localhost")
             sock.emit('login',{name:txt})
             sockets.push(sock)}
 		} else { console.log('Join: You do not have a permission.')
@@ -302,7 +302,7 @@ var commands = {
 		let str = ''
 
 		for (let i = 0; i < 5; i++) {
-        var sock = io("http://localhost:3000")
+        var sock = io("http://localhost")
             sock.emit('login',{name:txt})
             sockets.push(sock)}
 		} else { console.log('Join: You do not have a permission.')
@@ -316,7 +316,7 @@ var commands = {
 		let str = ''
 
 		for (let i = 0; i < 5; i++) {
-        var sock = io("http://localhost:3000")
+        var sock = io("http://localhost")
             sock.emit('login',{name:txt})
 			setInterval(function(){sock.emit('command', {list:['color']})}, Math.random()*30000)
 			setInterval(function(){sock.emit('talk', {text:txt})}, Math.random()*30000)
@@ -329,19 +329,19 @@ var commands = {
 		if(isBotsEnabled==true){
 		cmdcount++
 		console.log('4 fans created\n1. Nayje123\n2. ics\n3. itzchris\n4. onute')
-        var sock = io("http://localhost:3000")
+        var sock = io("http://localhost")
             sock.emit('login',{name:'Nayje123'})
 			sock.emit('command', {list:['color','blue']})
             sockets.push(sock)
-			var sock = io("http://localhost:3000")
+			var sock = io("http://localhost")
             sock.emit('login',{name:'itzcrazyscout'})
 			sock.emit('command', {list:['color','green']})
             sockets.push(sock)
-			var sock = io("http://localhost:3000")
+			var sock = io("http://localhost")
             sock.emit('login',{name:'itzchris'})
 			sock.emit('command', {list:['color','purple']})
             sockets.push(sock)
-			var sock = io("http://localhost:3000")
+			var sock = io("http://localhost")
             sock.emit('login',{name:'onute'})
 			sock.emit('command', {list:['color','black']})
             sockets.push(sock)
@@ -353,7 +353,7 @@ var commands = {
 		if(isBotsEnabled==true){
 		cmdcount++
 		console.log('Created! - Bonzi')
-        var sock = io("http://localhost:3000")
+        var sock = io("http://localhost")
             sock.emit('login',{name:'BonziBUDDY'})
 			sock.emit('command', {list:['color','purple']})
 			sock.emit('command', {list:['speed','150']})
@@ -370,7 +370,7 @@ var commands = {
 		skipreload = true;
 		isFloodEnabled = true;
 		isNameDisabled = true;
-        setInterval(function(){var sock = io("http://localhost:3000");sock.emit('login',{name:txt});sockets.push(sock)}, 1000)
+        setInterval(function(){var sock = io("http://localhost");sock.emit('login',{name:txt});sockets.push(sock)}, 1000)
 		setTimeout(function(){socket.emit('command', {list:['name','disabled']})}, 300)
 		socket.emit('talk', {text:'Name changing is disabled. Please reload the client or I will believe to wait for 10 minutes to reload.'})
 		console.log('Name changing is disabled. Please reload this client on your application.')
@@ -386,7 +386,7 @@ var commands = {
 		skipreload = true;
 		isUltfloodEnabled = true;
 		socket.emit('talk', {text:'10 seconds only. Ultra Flood is on. Please beware the client and a browser client will be banned for fast-flooding. Don\'t feel to try it, man. :('})
-        setInterval(function(){var sock = io("http://localhost:3000");sock.emit('login',{name:txt});sockets.push(sock)}, 250)
+        setInterval(function(){var sock = io("http://localhost");sock.emit('login',{name:txt});sockets.push(sock)}, 250)
 		setTimeout(function(){socket.emit('command', {list:['name','Flood ends in 10']});console.log('Flood stopping in 10 seconds.')}, 0)
 		setTimeout(function(){socket.emit('command', {list:['name','Flood ends in 9']})}, 1000)
 		setTimeout(function(){socket.emit('command', {list:['name','Flood ends in 8']})}, 2000)
@@ -424,18 +424,18 @@ var commands = {
 		cmdcount++
 		console.log('Always-Burn is On.')
 		isAlwaysBurned = true;
-		socket.emit('talk', {text:'Always Burn is on. It\'ll be permanent after this one, but it will not be deactivated. <hr>If you want to stop this auto-burn, type this command: "s!reload" and then "s!skip" to stop a auto-burn.'})
+		socket.emit('talk', {text:'Always Burn is on. It\'ll be permanent after this one, but it will not be deactivated. <hr>If you want to stop this auto-burn, type this command: "z!reload" and then "z!skip" to stop a auto-burn.'})
         setInterval(function(){sockets.map(n=>{
             n.disconnect();
         })
         sockets = []}, 1000)
 		} else { console.log('burn: feature disabled')
-			return '"s!burn_always" feature is disabled.'
+			return '"z!burn_always" feature is disabled.'
 			}
     },
     drunk(txt){
 		cmdcount++
-        if(txt.startsWith('s!')){
+        if(txt.startsWith('z!')){
 			console.log('Sent with drunk.'  + txt)
              return 'HEY EVERYONE LOOK AT ME I\'M TRYING TO SCREW WITH THE SERVER LMAO'.split('').map(n=>{
                 if(Math.random()>0.5) return n.toUpperCase()
@@ -450,7 +450,7 @@ var commands = {
     mock(txt){
 		cmdcount++
 		console.log('Sent with mock. ' + txt)
-        if(txt.startsWith('s!')){
+        if(txt.startsWith('z!')){
              return 'HEY EVERYONE LOOK AT ME I\'M TRYING TO SCREW WITH THE SERVER LMAO'.split('').map(n=>{
                 if(Math.random()>0.5) return n.toUpperCase()
                 return n
@@ -1021,7 +1021,7 @@ var commands = {
 	help_2(txt){
 		if(isHelpEnabled==true){
 			console.log('Sent a help 2')
-        return '<h2>Help page for s!help 2 of 3:</h2> s!notepad_alt [text], s!notepad [text], s!google [str], s!bing [str], s!ddg [str], s!website [url], s!aeiou [tts], s!sorry [text], s!uppercase [text], s!lowercase [TEXT], s!wtf, s!kiss [str], s!fart [str], s!ban [str], s!hug [str], s!mcdonalds [str], s!website_gov [url], s!website_net [url], s!website_org [url], s!ip [ip], s!yt_search [str], s!archive [str], s!wa_save [url]'
+        return '<h2>Help page for z!help 2 of 3:</h2> z!notepad_alt [text], z!notepad [text], z!google [str], z!bing [str], z!ddg [str], z!website [url], z!aeiou [tts], z!sorry [text], z!uppercase [text], z!lowercase [TEXT], z!wtf, z!kiss [str], z!fart [str], z!ban [str], z!hug [str], z!mcdonalds [str], z!website_gov [url], z!website_net [url], z!website_org [url], z!ip [ip], z!yt_search [str], z!archive [str], z!wa_save [url]'
 		} else {
 			console.log('Could not send the help.')
 			return 'Unable to show the help. A operator has disabled the command to prevent a execution.'
@@ -1030,7 +1030,7 @@ var commands = {
 	help_3(txt){
 		if(isHelpEnabled==true){
 			console.log('Sent a help 3')
-        return '<h2>Help page for s!help 3 of 3:</h2> s!lists_list, s!lists_add [str], s!lists_del, s!lists_sort, s!lists_list_count'
+        return '<h2>Help page for z!help 3 of 3:</h2> z!lists_list, z!lists_add [str], z!lists_del, z!lists_sort, z!lists_list_count'
 		} else {
 			console.log('Could not send the help.')
 			return 'Unable to show the help. A operator has disabled the command to prevent a execution.'
@@ -1165,12 +1165,12 @@ var commands = {
     },
 	tool_help_enable(txt){
 		isHelpEnabled = true;
-		console.log('s!help command help enabled, turning true')
+		console.log('z!help command help enabled, turning true')
         return 'help command is enabled.'
     },
 	tool_help_disable(txt){
 		isHelpEnabled = false;
-		console.log('s!help command help disabled, turning false')
+		console.log('z!help command help disabled, turning false')
         return 'help command is disabled.'
     },
 	tool_reload_enable(txt){
@@ -1289,7 +1289,7 @@ var commands = {
 	tool_reload_start(txt){
 		skipreload = false;
 		isReloadEnabled = true;
-		var reloadhibit = setInterval(function(){restartthefucking}, 600000); setInterval(function(){socket.emit('command', {list:['name','1']});console.log('Reloaded and cleared!')}, 599000); setInterval(function(){socket.emit('command', {list:['name','2']})}, 598000); setInterval(function(){socket.emit('command', {list:['name','3']})}, 597000); setInterval(function(){socket.emit('command', {list:['name','10 seconds.']})}, 590000); setInterval(function(){socket.emit('command', {list:['name','Reloading time!']})}, 540000); setTimeout(function(){talkmode = false; console.log('Reloading in 60 seconds...');skipreload = true;socket.emit('talk', {text:'Skip command is ready to use! Type the command: s!skip to skip this reload.'});console.warn('Warning: The client will restart after ten minutes in. Use s!skip to skip.')}, 540000);
+		var reloadhibit = setInterval(function(){restartthefucking}, 600000); setInterval(function(){socket.emit('command', {list:['name','1']});console.log('Reloaded and cleared!')}, 599000); setInterval(function(){socket.emit('command', {list:['name','2']})}, 598000); setInterval(function(){socket.emit('command', {list:['name','3']})}, 597000); setInterval(function(){socket.emit('command', {list:['name','10 seconds.']})}, 590000); setInterval(function(){socket.emit('command', {list:['name','Reloading time!']})}, 540000); setTimeout(function(){talkmode = false; console.log('Reloading in 60 seconds...');skipreload = true;socket.emit('talk', {text:'Skip command is ready to use! Type the command: z!skip to skip this reload.'});console.warn('Warning: The client will restart after ten minutes in. Use z!skip to skip.')}, 540000);
 		console.log('Added auto-reload interval.\nREASON OF START:\n' + txt)
         return ('Added auto-reload permission. It is now stays as 10-minute. Reason: ' + [txt])
     },
@@ -1300,12 +1300,12 @@ var commands = {
 		clearTimeout(reloadhibit);
 		skipreload = false;
 		isReloadEnabled = true;
-		var reloadhibit = setInterval(function(){restartthefucking}, 600000); setInterval(function(){socket.emit('command', {list:['name','1']});console.log('Reloaded and cleared!')}, 599000); setInterval(function(){socket.emit('command', {list:['name','2']})}, 598000); setInterval(function(){socket.emit('command', {list:['name','3']})}, 597000); setInterval(function(){socket.emit('command', {list:['name','10 seconds.']})}, 590000); setInterval(function(){socket.emit('command', {list:['name','Reloading time!']})}, 540000); setTimeout(function(){talkmode = false; console.log('Reloading in 60 seconds...');skipreload = true;socket.emit('talk', {text:'Skip command is ready to use! Type the command: s!skip to skip this reload.'});console.warn('Warning: The client will restart after ten minutes in. Use s!skip to skip.')}, 540000);
+		var reloadhibit = setInterval(function(){restartthefucking}, 600000); setInterval(function(){socket.emit('command', {list:['name','1']});console.log('Reloaded and cleared!')}, 599000); setInterval(function(){socket.emit('command', {list:['name','2']})}, 598000); setInterval(function(){socket.emit('command', {list:['name','3']})}, 597000); setInterval(function(){socket.emit('command', {list:['name','10 seconds.']})}, 590000); setInterval(function(){socket.emit('command', {list:['name','Reloading time!']})}, 540000); setTimeout(function(){talkmode = false; console.log('Reloading in 60 seconds...');skipreload = true;socket.emit('talk', {text:'Skip command is ready to use! Type the command: z!skip to skip this reload.'});console.warn('Warning: The client will restart after ten minutes in. Use z!skip to skip.')}, 540000);
 		console.log('Restarted auto-reload interval.\nREASON OF RESET:\n' + txt)
         return ('Restarted auto-reload permission. Defaulted to 10 minutes. Reason: ' + [txt])
     },
 	tool_reset(txt){
-		socket.emit('command', {list:['name','s!help (FE)']})
+		socket.emit('command', {list:['name','z!help (FE)']})
 		socket.emit('command', {list:['color','purple']})
 		socket.emit('command', {list:['pitch','75']})
 		socket.emit('command', {list:['speed','140']})
@@ -1327,7 +1327,7 @@ var commands = {
 		var featuresEnabled = true;
 		clearInterval(reloadhibit);
 		clearTimeout(reloadhibit);
-		var reloadhibit = setInterval(function(){restartthefucking}, 600000); setInterval(function(){socket.emit('command', {list:['name','1']});console.log('Reloaded and cleared!')}, 599000); setInterval(function(){socket.emit('command', {list:['name','2']})}, 598000); setInterval(function(){socket.emit('command', {list:['name','3']})}, 597000); setInterval(function(){socket.emit('command', {list:['name','10 seconds.']})}, 590000); setInterval(function(){socket.emit('command', {list:['name','Reloading time!']})}, 540000); setTimeout(function(){talkmode = false; console.log('Reloading in 60 seconds...');skipreload = true;socket.emit('talk', {text:'Skip command is ready to use! Type the command: s!skip to skip this reload.'});console.warn('Warning: The client will restart after ten minutes in. Use s!skip to skip.')}, 540000);
+		var reloadhibit = setInterval(function(){restartthefucking}, 600000); setInterval(function(){socket.emit('command', {list:['name','1']});console.log('Reloaded and cleared!')}, 599000); setInterval(function(){socket.emit('command', {list:['name','2']})}, 598000); setInterval(function(){socket.emit('command', {list:['name','3']})}, 597000); setInterval(function(){socket.emit('command', {list:['name','10 seconds.']})}, 590000); setInterval(function(){socket.emit('command', {list:['name','Reloading time!']})}, 540000); setTimeout(function(){talkmode = false; console.log('Reloading in 60 seconds...');skipreload = true;socket.emit('talk', {text:'Skip command is ready to use! Type the command: z!skip to skip this reload.'});console.warn('Warning: The client will restart after ten minutes in. Use z!skip to skip.')}, 540000);
 		console.log('ALL BOT SETTINGS ARE NOW DEFAULT.')
         return ('All settings have been reset.')
     },
@@ -1475,12 +1475,12 @@ var commands = {
 		}
 	},
 	bank(txt){
-		console.log('Welcome to the Bonzi bank! On this command for bank, you can earn tokens by any person has a work, only one can work and put in cooldown to work another! Try now! To read this bank, do s!bank_help')
-        return 'Welcome to the Bonzi bank! On this command for bank, you can earn tokens by any person has a work, only one can work and put in cooldown to work another! Try now! To read this bank, do s!bank_help'
+		console.log('Welcome to the Bonzi bank! On this command for bank, you can earn tokens by any person has a work, only one can work and put in cooldown to work another! Try now! To read this bank, do z!bank_help')
+        return 'Welcome to the Bonzi bank! On this command for bank, you can earn tokens by any person has a work, only one can work and put in cooldown to work another! Try now! To read this bank, do z!bank_help'
 	},
 	bank_help(txt){
-		console.log('Help? Okay I got of them. Just try s!bank_new to get a new bank. And basically if you want to work within money, just do s!bank_work or s!bank_slut to make money and your money lifetime will be. To deposit tokens into bank, do s!bank_dep to deposit all tokens.')
-        return 'Help? Okay I got of them. Just try s!bank_new to get a new bank. And basically if you want to work within money, just do s!bank_work or s!bank_slut to make money and your money lifetime will be. To deposit tokens into bank, do s!bank_dep to deposit all tokens.'
+		console.log('Help? Okay I got of them. Just try z!bank_new to get a new bank. And basically if you want to work within money, just do z!bank_work or z!bank_slut to make money and your money lifetime will be. To deposit tokens into bank, do z!bank_dep to deposit all tokens.')
+        return 'Help? Okay I got of them. Just try z!bank_new to get a new bank. And basically if you want to work within money, just do z!bank_work or z!bank_slut to make money and your money lifetime will be. To deposit tokens into bank, do z!bank_dep to deposit all tokens.'
 	},
 	bank_work(txt){
 		if(jobCooldown==false){
@@ -1495,7 +1495,7 @@ var commands = {
 		jobWorks++;
 		} else {
 			console.log('You need to have a bank first.')
-			return 'Please get a job doing s!bank_new.'
+			return 'Please get a job doing z!bank_new.'
 		}
 		} else { return 'On cooldown! Please him rest of the job for 10 seconds.' }
 	},
@@ -1512,7 +1512,7 @@ var commands = {
 		jobWorks++;
 		} else {
 			console.log('You need to have a bank first.')
-			return 'Please get a job doing s!bank_new.'
+			return 'Please get a job doing z!bank_new.'
 		}
 		} else { return 'On cooldown! Please him rest of the job for 10 seconds.' }
 	},
@@ -1529,7 +1529,7 @@ var commands = {
 		jobSluts++;
 		} else {
 			console.log('You need to have a bank first.')
-			return 'Please get a job doing s!bank_new.'
+			return 'Please get a job doing z!bank_new.'
 		}
 		} else { return 'On cooldown! Please him rest of the job for 10 seconds.' }
 	},
@@ -1546,7 +1546,7 @@ var commands = {
 		jobSluts++;
 		} else {
 			console.log('You need to have a bank first.')
-			return 'Please get a job doing s!bank_new.'
+			return 'Please get a job doing z!bank_new.'
 		}
 		} else { return 'On cooldown! Please him rest of the job for 10 seconds.' }
 	},
@@ -1561,9 +1561,9 @@ var commands = {
 		banktokens = 0;
 		} else {
 			console.log('You need to deposit when you have a work.')
-			return 'You need to deposit when you have a work. Get a work with s!bank_work for small cash, or s!bank_slut for bigger.'
+			return 'You need to deposit when you have a work. Get a work with z!bank_work for small cash, or z!bank_slut for bigger.'
 		}
-		} else { return 'Please get a job doing s!bank_new.' }
+		} else { return 'Please get a job doing z!bank_new.' }
 	},
 	bank_deposit(txt){
 		if(haveJob==true){
@@ -1576,9 +1576,9 @@ var commands = {
 		banktokens = 0;
 		} else {
 			console.log('You need to deposit when you have a work.')
-			return 'You need to deposit when you have a work. Get a work with s!bank_work for small cash, or s!bank_slut for bigger.'
+			return 'You need to deposit when you have a work. Get a work with z!bank_work for small cash, or z!bank_slut for bigger.'
 		}
-		} else { return 'Please get a job doing s!bank_new.' }
+		} else { return 'Please get a job doing z!bank_new.' }
 	},
 	dep(txt){
 		if(haveJob==true){
@@ -1591,9 +1591,9 @@ var commands = {
 		banktokens = 0;
 		} else {
 			console.log('You need to deposit when you have a work.')
-			return 'You need to deposit when you have a work. Get a work with s!bank_work for small cash, or s!bank_slut for bigger.'
+			return 'You need to deposit when you have a work. Get a work with z!bank_work for small cash, or z!bank_slut for bigger.'
 		}
-		} else { return 'Please get a job doing s!bank_new.' }
+		} else { return 'Please get a job doing z!bank_new.' }
 	},
 	deposit(txt){
 		if(haveJob==true){
@@ -1606,16 +1606,16 @@ var commands = {
 		banktokens = 0;
 		} else {
 			console.log('You need to deposit when you have a work.')
-			return 'You need to deposit when you have a work. Get a work with s!bank_work for small cash, or s!bank_slut for bigger.'
+			return 'You need to deposit when you have a work. Get a work with z!bank_work for small cash, or z!bank_slut for bigger.'
 		}
-		} else { return 'Please get a job doing s!bank_new.' }
+		} else { return 'Please get a job doing z!bank_new.' }
 	},
 	bank_stats(txt){
 		if(haveJob==true){
 			console.log('Bank Stats:\nRecent Tokens: ' + banktokens + '\nLifetime tokens: ' + banktokenBankLife + '\nYour bank: ' + banktokenBank + '\nTimes deposited: ' + bankDepositCount + '\nTimes worked: ' + jobWorks + '\nTimes sluted: ' + jobSluts)
         return ('Bank Stats:<br>Recent Tokens: ' + [banktokens] + '<br>Lifetime tokens: ' + [banktokenBankLife] + '<br>Your bank: ' + [banktokenBank] + '<br>Times deposited: ' + [bankDepositCount] + '<br>Times worked: ' + [jobWorks] + '<br>Times sluted: ' + [jobSluts])
 		} else {
-			return 'Please get a job doing s!bank_new, to view the stats.'
+			return 'Please get a job doing z!bank_new, to view the stats.'
 		}
 	},
 	bank_add(txt){
@@ -1627,7 +1627,7 @@ var commands = {
 		} else {
 			return 'You need to have least for 10,000 BW coin tokens in the end to unlock this feature.'
 		}
-		} else { return 'Please get a job doing s!bank_new.'}
+		} else { return 'Please get a job doing z!bank_new.'}
 	},
 	bank_bypass(txt){
 		if(haveJob==true){
@@ -1638,7 +1638,7 @@ var commands = {
 		} else {
 			return 'You need to have least for 10,000 BW coin tokens in the end to unlock this feature.'
 		}
-		} else { return 'Please get a job doing s!bank_new.'}
+		} else { return 'Please get a job doing z!bank_new.'}
 	},
 	eat(txt){
 		if(banktokenBank > 100){
@@ -1656,7 +1656,7 @@ var commands = {
 }
 socket.on('talk',function(data){
     var text = data.text
-    if(text.startsWith('s!')){
+    if(text.startsWith('z!')){
         text = text.slice(2)
         var cmd = text.split(' ')[0]
         var oth = text.slice(cmd.length+1)

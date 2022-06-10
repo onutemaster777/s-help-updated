@@ -1,5 +1,5 @@
 var io = require("socket.io-client")
-var socket = io("http://localhost:3000/") // You can change the link.
+var socket = io("http://localhost:3000") // You can change the link.
 socket.emit('login',{name:'ZANDER MOMENT'})
 socket.emit('command',{list:['color','purple']})
 var wtf = ['Geri1940 is a sexual harasser confirmed.','HELLO GUYS YOUR FAVORITE TROLLER IS HERE','ZANDER MOMENT','HEY YOU IDIOTS IT\'S TIME FOR YOUR FAVORITE ZANDER MOMENTUMS','SUB TO LOSKY NOW','BonziWORLD Weather will now show the weather status in this server\'s Location: It is currently 1000 degrees celcius.','install cat gamer1kill now','hah hah 2000 fps emulator go bhhhhhhhh','fuck off','Your favorite bonzibuddy fan will post inflation videos and troll other users for you!'] // You can add your quotes here.
